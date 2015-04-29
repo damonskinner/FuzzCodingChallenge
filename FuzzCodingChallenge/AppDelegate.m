@@ -8,6 +8,10 @@
 
 #import "AppDelegate.h"
 
+
+#import "DCSFuzzAPI.h"
+#import "DCSFuzzData.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +21,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSMutableArray *dataArray = [[NSMutableArray alloc]init];
+    
+    [DCSFuzzAPI getFuzzDataWithCompletionBlock:^(NSArray *arrayOfDicts) {
+        
+        for (NSDictionary *eachDictionary in arrayOfDicts) {
+            [dataArray addObject:[DCSFuzzData dataFromDictionary:eachDictionary]];
+            
+        }
+        
+        
+    }];
+    
     return YES;
 }
 
