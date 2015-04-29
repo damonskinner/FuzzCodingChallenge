@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCSFuzzDatastore.h"
 
 @interface DCSFuzzTabBarController : UITabBarController
+
+@property (nonatomic, strong) DCSFuzzDatastore *datastore;
 
 @end

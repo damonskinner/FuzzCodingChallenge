@@ -7,6 +7,8 @@
 //
 
 #import "DCSFuzzDatastore.h"
+#import "DCSFuzzAPI.h"
+#import "DCSFuzzData.h"
 
 @implementation DCSFuzzDatastore
 
@@ -20,7 +22,18 @@
     return _sharedDataStore;
 }
 
-
+-(void) populateDatastoreWithCompletionBlock:(void (^)(void))completionBlock {
+    
+    [DCSFuzzAPI getFuzzDataWithCompletionBlock:^(NSArray *arrayOfDicts) {
+        
+        for (NSDictionary *eachDictionary in arrayOfDicts) {
+            [self.fuzzDataArray addObject:[DCSFuzzData dataFromDictionary:eachDictionary]];
+            
+        }
+        completionBlock();
+    }];
+    
+}
 
 
 

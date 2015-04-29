@@ -10,4 +10,11 @@
 
 @interface DCSFuzzDatastore : NSObject
 
+@property (nonatomic, strong) NSMutableArray *fuzzDataArray;
+
+
++ (instancetype)sharedDataStore;
+
+-(void) populateDatastoreWithCompletionBlock:(void (^)(void))completionBlock;
+
 @end
