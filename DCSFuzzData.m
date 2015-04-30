@@ -13,7 +13,13 @@
 
 +(DCSFuzzData *) dataFromDictionary:(NSDictionary *) fuzzDictionary {
     DCSFuzzData *fuzzData = [[DCSFuzzData alloc] init];
-    fuzzData.data = fuzzDictionary[@"data"];
+    
+    if (!fuzzDictionary[@"data"]) {
+        fuzzData.data = @"Error - No Data";
+    } else {
+        fuzzData.data = fuzzDictionary[@"data"];
+    }
+
     fuzzData.date = fuzzDictionary[@"date"];
     fuzzData.dataId = fuzzDictionary[@"id"];
     fuzzData.type = fuzzDictionary[@"type"];

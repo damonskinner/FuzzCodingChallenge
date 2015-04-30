@@ -28,9 +28,6 @@
     DCSFuzzImagesTableViewController *imagesTVC = [self makeImagesVC];
     
     self.viewControllers = @[allDataTVC, textTVC, imagesTVC];
-    
-    
-
 }
 
 
