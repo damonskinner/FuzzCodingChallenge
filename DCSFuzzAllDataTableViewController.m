@@ -11,6 +11,8 @@
 #import "DCSFuzzTextCell.h"
 #import "DCSFuzzImageTableViewCell.h"
 #import <AFNetworking.h>
+#import "DCSFuzzImageViewController.h"
+#import "DCSFuzzWebViewController.h"
 
 @interface DCSFuzzAllDataTableViewController ()
 
@@ -168,14 +170,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if ([((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).type isEqualToString:@"image"]) {
+        DCSFuzzImageViewController *popUpImageVC = [[DCSFuzzImageViewController alloc] init];
+        popUpImageVC.selectedImage =((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).fuzzImage;
+        [self presentViewController:popUpImageVC animated:YES completion:nil];
+    } else if ([((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).type isEqualToString:@"text"]) {
+        DCSFuzzWebViewController *webViewVC = [[DCSFuzzWebViewController alloc]init];
+        webViewVC.webViewURLString = @"https://fuzzproductions.com/";
+        [self presentViewController:webViewVC animated:YES completion:nil];
+    }
+    
+}
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    return NO;
+}
 
 @end

@@ -9,6 +9,7 @@
 #import "DCSFuzzImagesTableViewController.h"
 #import "DCSFuzzImageTableViewCell.h"
 #import "DCSFuzzData.h"
+#import "DCSFuzzImageViewController.h"
 
 @interface DCSFuzzImagesTableViewController ()
 
@@ -114,14 +115,27 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+
 }
-*/
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DCSFuzzImageViewController *popUpImageVC = [[DCSFuzzImageViewController alloc] init];
+    popUpImageVC.selectedImage =((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
+    [self presentViewController:popUpImageVC animated:YES completion:nil];
+
+}
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+    
+    return YES;
+}
 
 @end
