@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.popUpImage.image=self.selectedImage;
+    self.popUpImage.contentMode = UIViewContentModeScaleAspectFit;
     // Do any additional setup after loading the view from its nib.
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(viewTapped:)];

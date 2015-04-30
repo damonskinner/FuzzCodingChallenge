@@ -13,7 +13,7 @@
 - (void)awakeFromNib {
     // Initialization code
     self.dateLabel.font = [UIFont fontWithName:@"Copperplate-Light" size:16];
-    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -13,6 +13,7 @@
 		36594F9F1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F9D1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib */; };
 		36594FA31AF1DDE10010E3D1 /* DCSFuzzWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */; };
 		36594FA41AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */; };
+		36594FAA1AF2B6500010E3D1 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 36594FA91AF2B6500010E3D1 /* no_image.png */; };
 		368126921AF17E9000101034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126911AF17E9000101034 /* main.m */; };
 		368126951AF17E9000101034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126941AF17E9000101034 /* AppDelegate.m */; };
 		3681269B1AF17E9000101034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 368126991AF17E9000101034 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 		36594FA01AF1DDE10010E3D1 /* DCSFuzzWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzWebViewController.h; sourceTree = "<group>"; };
 		36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzWebViewController.m; sourceTree = "<group>"; };
 		36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzWebViewController.xib; sourceTree = "<group>"; };
+		36594FA91AF2B6500010E3D1 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
 		3681268C1AF17E9000101034 /* FuzzCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuzzCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		368126901AF17E9000101034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368126911AF17E9000101034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				36594F991AF1D49A0010E3D1 /* placeholder.png */,
+				36594FA91AF2B6500010E3D1 /* no_image.png */,
 				36ED69091AF1976C008EA7D3 /* DCSConstants.h */,
 				36ED690A1AF1976C008EA7D3 /* DCSConstants.m */,
 			);
@@ -342,6 +345,7 @@
 				36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */,
 				368126A01AF17E9000101034 /* LaunchScreen.xib in Resources */,
 				3681269D1AF17E9000101034 /* Images.xcassets in Resources */,
+				36594FAA1AF2B6500010E3D1 /* no_image.png in Resources */,
 				369FD3671AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

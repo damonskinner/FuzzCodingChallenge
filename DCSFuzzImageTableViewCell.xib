@@ -15,6 +15,10 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pva-nB-TCU">
                         <rect key="frame" x="186" y="39" width="172" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="750" constant="200" id="Fj0-4R-BD4"/>
+                            <constraint firstAttribute="height" priority="750" constant="200" id="ZaB-Uo-w3M"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="datelabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhI-VD-Cau">
                         <rect key="frame" x="303" y="8" width="71" height="21"/>

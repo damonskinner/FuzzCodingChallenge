@@ -15,12 +15,17 @@
     DCSFuzzData *fuzzData = [[DCSFuzzData alloc] init];
     
     if (!fuzzDictionary[@"data"]) {
-        fuzzData.data = @"Error - No Data";
+        fuzzData.data = @"Error: No Data";
     } else {
         fuzzData.data = fuzzDictionary[@"data"];
     }
+    
+    if (!fuzzDictionary[@"date"]) {
+        fuzzData.date = @"Error: No Date";
+    } else {
+        fuzzData.date = fuzzDictionary[@"date"];
+    }
 
-    fuzzData.date = fuzzDictionary[@"date"];
     fuzzData.dataId = fuzzDictionary[@"id"];
     fuzzData.type = fuzzDictionary[@"type"];
     
