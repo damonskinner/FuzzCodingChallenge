@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DCSFuzzWebViewController">
             <connections>
+                <outlet property="bottomBarView" destination="Rjp-sV-6kB" id="3MX-vu-wFT"/>
                 <outlet property="fuzzWebView" destination="kSW-03-vCr" id="bvL-Gl-exR"/>
+                <outlet property="returnButtonLabel" destination="Kom-Ib-ovu" id="Dfi-KX-a8t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,24 +21,37 @@
                     <rect key="frame" x="60" y="36" width="468" height="510"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </webView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kom-Ib-ovu">
-                    <rect key="frame" x="277" y="554" width="46" height="30"/>
-                    <state key="normal" title="Return">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="returnButton:" destination="-1" eventType="touchUpInside" id="BIS-1D-Y18"/>
-                    </connections>
-                </button>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rjp-sV-6kB">
+                    <rect key="frame" x="251" y="554" width="182" height="25"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kom-Ib-ovu">
+                            <rect key="frame" x="68" y="-2" width="46" height="30"/>
+                            <state key="normal" title="Return">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="returnButton:" destination="-1" eventType="touchUpInside" id="BIS-1D-Y18"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Kom-Ib-ovu" secondAttribute="bottom" constant="3" id="QEb-7a-19X"/>
+                        <constraint firstAttribute="centerX" secondItem="Kom-Ib-ovu" secondAttribute="centerX" id="l7E-ei-fHX"/>
+                        <constraint firstItem="Kom-Ib-ovu" firstAttribute="top" secondItem="Rjp-sV-6kB" secondAttribute="top" constant="3" id="sb5-1S-8rW"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Kom-Ib-ovu" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" constant="2" id="5GS-Yg-UZb"/>
-                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="NFx-Eb-IXk"/>
-                <constraint firstAttribute="centerX" secondItem="Kom-Ib-ovu" secondAttribute="centerX" id="PqR-op-vlN"/>
-                <constraint firstAttribute="bottom" secondItem="kSW-03-vCr" secondAttribute="bottom" constant="40" id="QwF-vr-dn2"/>
-                <constraint firstAttribute="trailing" secondItem="kSW-03-vCr" secondAttribute="trailing" constant="5" id="bmS-D7-TwQ"/>
-                <constraint firstItem="kSW-03-vCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="yEF-WN-L5n"/>
+                <constraint firstItem="kSW-03-vCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="YVd-Sr-pig"/>
+                <constraint firstAttribute="trailing" secondItem="kSW-03-vCr" secondAttribute="trailing" constant="5" id="Zde-5t-HKN"/>
+                <constraint firstItem="Rjp-sV-6kB" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" id="a7c-Wk-zSV"/>
+                <constraint firstItem="Rjp-sV-6kB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="bRW-g3-ihc"/>
+                <constraint firstAttribute="bottom" secondItem="Rjp-sV-6kB" secondAttribute="bottom" constant="8" id="ipd-pW-1ix"/>
+                <constraint firstItem="Rjp-sV-6kB" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" id="ojS-8Z-K24"/>
+                <constraint firstAttribute="trailing" secondItem="Rjp-sV-6kB" secondAttribute="trailing" constant="5" id="pWY-tF-8lM"/>
+                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="sTA-Og-NWY"/>
             </constraints>
         </view>
     </objects>

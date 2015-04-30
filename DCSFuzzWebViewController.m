@@ -11,6 +11,8 @@
 @interface DCSFuzzWebViewController ()
 @property (weak, nonatomic) IBOutlet UIWebView *fuzzWebView;
 - (IBAction)returnButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *returnButtonLabel;
+@property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 
 @end
 
@@ -18,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.bottomBarView.backgroundColor = [UIColor blackColor];
+    self.returnButtonLabel.tintColor = [UIColor whiteColor];
 
     NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webViewURLString]];
     [self.fuzzWebView loadRequest:request];
