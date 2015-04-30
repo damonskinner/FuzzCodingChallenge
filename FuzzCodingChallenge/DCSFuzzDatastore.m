@@ -55,6 +55,7 @@
         if ([((DCSFuzzData *)self.fuzzDataArray[i]).type isEqualToString:@"image"]) {
             NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
             [myQueue setMaxConcurrentOperationCount:10];
+            
             NSURL *imageURL = [NSURL URLWithString:((DCSFuzzData *)self.fuzzDataArray[i]).data];
             
             NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL:imageURL];
@@ -67,9 +68,7 @@
                 
                 completionBlock(i);
                 
-                if (i==[self.fuzzDataArray count]-1) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
-                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
                 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

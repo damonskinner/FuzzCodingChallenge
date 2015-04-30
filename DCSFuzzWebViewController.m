@@ -9,11 +9,14 @@
 #import "DCSFuzzWebViewController.h"
 
 @interface DCSFuzzWebViewController ()
+
 @property (weak, nonatomic) IBOutlet UIWebView *fuzzWebView;
-- (IBAction)returnButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *returnButtonLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UIView *topBarView;
+
+
+- (IBAction)returnButton:(id)sender;
 
 @end
 
