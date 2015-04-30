@@ -10,6 +10,7 @@
 
 @interface DCSFuzzTextCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UILabel *fuzzText;
+
 
 @end

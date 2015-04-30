@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface DCSFuzzData : NSObject
 
@@ -14,6 +15,8 @@
 @property (nonatomic, strong) NSString *date;
 @property (nonatomic, strong) NSString *dataId;
 @property (nonatomic, strong) NSString *type;
+
+@property (nonatomic, strong) UIImage *fuzzImage;
 
 +(DCSFuzzData *) dataFromDictionary:(NSDictionary *) fuzzDictionary;
 

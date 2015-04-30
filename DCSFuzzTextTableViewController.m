@@ -24,8 +24,14 @@
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.textArray = [[NSMutableArray alloc]init];
     [self.tableView registerClass:[DCSFuzzTextCell class] forCellReuseIdentifier:@"textCell"];
+    
+//TODO:  Fix nib versus custom class
+//    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+
     [self prepareTableViewForResizingCells];
     
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.tableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     
     for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
         if ([eachData.type isEqualToString:@"text"]) {
@@ -64,13 +70,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
-    if(cell==nil) {
-        [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
-    }
     
     cell.textLabel.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
-    
+
     cell.textLabel.numberOfLines=0;
     cell.textLabel.lineBreakMode= NSLineBreakByWordWrapping;
     

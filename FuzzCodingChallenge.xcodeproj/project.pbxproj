@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */; };
+		36594F9A1AF1D49A0010E3D1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 36594F991AF1D49A0010E3D1 /* placeholder.png */; };
 		368126921AF17E9000101034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126911AF17E9000101034 /* main.m */; };
 		368126951AF17E9000101034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126941AF17E9000101034 /* AppDelegate.m */; };
 		368126981AF17E9000101034 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126971AF17E9000101034 /* ViewController.m */; };
@@ -15,9 +17,8 @@
 		368126A01AF17E9000101034 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3681269E1AF17E9000101034 /* LaunchScreen.xib */; };
 		368126AC1AF17E9000101034 /* FuzzCodingChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126AB1AF17E9000101034 /* FuzzCodingChallengeTests.m */; };
 		369FD35D1AF1A793009FB9A7 /* DCSFuzzTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */; };
-		369FD35E1AF1A793009FB9A7 /* DCSFuzzTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369FD35C1AF1A793009FB9A7 /* DCSFuzzTextCell.xib */; };
-		369FD3621AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FD3601AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.m */; };
-		369FD3631AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369FD3611AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.xib */; };
+		369FD3671AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */; };
+		369FD36A1AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */; };
 		36ED69051AF1970F008EA7D3 /* DCSFuzzDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */; };
 		36ED69081AF19741008EA7D3 /* DCSFuzzAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69071AF19741008EA7D3 /* DCSFuzzAPI.m */; };
 		36ED690B1AF1976C008EA7D3 /* DCSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED690A1AF1976C008EA7D3 /* DCSConstants.m */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzTextCell.xib; sourceTree = "<group>"; };
+		36594F991AF1D49A0010E3D1 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		3681268C1AF17E9000101034 /* FuzzCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FuzzCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		368126901AF17E9000101034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368126911AF17E9000101034 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,10 +58,9 @@
 		368126AB1AF17E9000101034 /* FuzzCodingChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuzzCodingChallengeTests.m; sourceTree = "<group>"; };
 		369FD35A1AF1A793009FB9A7 /* DCSFuzzTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextCell.h; sourceTree = "<group>"; };
 		369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextCell.m; sourceTree = "<group>"; };
-		369FD35C1AF1A793009FB9A7 /* DCSFuzzTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzTextCell.xib; sourceTree = "<group>"; };
-		369FD35F1AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzImageTableViewCell.h; sourceTree = "<group>"; };
-		369FD3601AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzImageTableViewCell.m; sourceTree = "<group>"; };
-		369FD3611AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzImageTableViewCell.xib; sourceTree = "<group>"; };
+		369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzImageTableViewCell.xib; sourceTree = "<group>"; };
+		369FD3681AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzImageTableViewCell.h; sourceTree = "<group>"; };
+		369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzImageTableViewCell.m; sourceTree = "<group>"; };
 		36ED69031AF1970F008EA7D3 /* DCSFuzzDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzDatastore.h; sourceTree = "<group>"; };
 		36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzDatastore.m; sourceTree = "<group>"; };
 		36ED69061AF19741008EA7D3 /* DCSFuzzAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzAPI.h; sourceTree = "<group>"; };
@@ -110,9 +112,13 @@
 		368126831AF17E9000101034 = {
 			isa = PBXGroup;
 			children = (
+				369FD3681AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.h */,
+				369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */,
+				369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */,
 				36ED691B1AF19C81008EA7D3 /* ViewControllers */,
 				36ED690C1AF19900008EA7D3 /* DCSFuzzData.h */,
 				36ED690D1AF19900008EA7D3 /* DCSFuzzData.m */,
+				36594F991AF1D49A0010E3D1 /* placeholder.png */,
 				3681268E1AF17E9000101034 /* FuzzCodingChallenge */,
 				368126A81AF17E9000101034 /* FuzzCodingChallengeTests */,
 				3681268D1AF17E9000101034 /* Products */,
@@ -189,11 +195,8 @@
 				36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.h */,
 				36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m */,
 				369FD35A1AF1A793009FB9A7 /* DCSFuzzTextCell.h */,
+				36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */,
 				369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */,
-				369FD35C1AF1A793009FB9A7 /* DCSFuzzTextCell.xib */,
-				369FD35F1AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.h */,
-				369FD3601AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.m */,
-				369FD3611AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -290,10 +293,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3681269B1AF17E9000101034 /* Main.storyboard in Resources */,
+				36594F9A1AF1D49A0010E3D1 /* placeholder.png in Resources */,
+				36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */,
 				368126A01AF17E9000101034 /* LaunchScreen.xib in Resources */,
-				369FD35E1AF1A793009FB9A7 /* DCSFuzzTextCell.xib in Resources */,
 				3681269D1AF17E9000101034 /* Images.xcassets in Resources */,
-				369FD3631AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */,
+				369FD3671AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,7 +355,7 @@
 				36ED690E1AF19900008EA7D3 /* DCSFuzzData.m in Sources */,
 				368126951AF17E9000101034 /* AppDelegate.m in Sources */,
 				36ED69111AF19BD5008EA7D3 /* DCSFuzzTabBarController.m in Sources */,
-				369FD3621AF1A7A6009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */,
+				369FD36A1AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */,
 				36ED691A1AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m in Sources */,
 				368126921AF17E9000101034 /* main.m in Sources */,
 				36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m in Sources */,

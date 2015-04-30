@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DCSFuzzImageTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *fuzzImage;
 
 @end

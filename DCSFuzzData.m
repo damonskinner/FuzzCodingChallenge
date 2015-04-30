@@ -18,6 +18,7 @@
     fuzzData.dataId = fuzzDictionary[@"id"];
     fuzzData.type = fuzzDictionary[@"type"];
     
+    fuzzData.fuzzImage = [UIImage imageNamed:@"placeholder"];
     return fuzzData;
 }
 

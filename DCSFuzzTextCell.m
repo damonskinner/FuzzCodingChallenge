@@ -14,21 +14,6 @@
     // Initialization code
     
     
-    [self.contentView removeConstraints:self.contentView.constraints];
-    [self.textLabel removeConstraints:self.textLabel.constraints];
-    
-    self.textLabel.translatesAutoresizingMaskIntoConstraints=NO;
-    
-    NSLayoutConstraint *textLabelLeft = [NSLayoutConstraint
-                                         constraintWithItem:self.textLabel attribute:NSLayoutAttributeLeft
-                                         relatedBy:NSLayoutRelationEqual
-                                         toItem:self.contentView
-                                         attribute:NSLayoutAttributeLeftMargin
-                                         multiplier:1.0
-                                         constant:0];
-    
-    [self.contentView addConstraint:textLabelLeft];
-    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
