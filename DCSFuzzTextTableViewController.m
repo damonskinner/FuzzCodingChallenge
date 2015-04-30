@@ -7,8 +7,13 @@
 //
 
 #import "DCSFuzzTextTableViewController.h"
+#import "DCSFuzzTextCell.h"
+#import "DCSFuzzData.h"
+
 
 @interface DCSFuzzTextTableViewController ()
+
+@property (nonatomic, strong) NSMutableArray *textArray;
 
 @end
 
@@ -16,12 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.datastore = [DCSFuzzDatastore sharedDataStore];
+    self.textArray = [[NSMutableArray alloc]init];
+    [self.tableView registerClass:[DCSFuzzTextCell class] forCellReuseIdentifier:@"textCell"];
+    [self prepareTableViewForResizingCells];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
+        if ([eachData.type isEqualToString:@"text"]) {
+            [self.textArray addObject:eachData];
+        }
+    }
+    [self.tableView reloadData];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,26 +45,38 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+
     // Return the number of rows in the section.
-    return 0;
+    return [self.textArray count];
 }
 
-/*
+- (void)prepareTableViewForResizingCells {
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 50.0;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
+    if(cell==nil) {
+        [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
+    }
     
-    // Configure the cell...
+    cell.textLabel.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
+    
+    cell.textLabel.numberOfLines=0;
+    cell.textLabel.lineBreakMode= NSLineBreakByWordWrapping;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -22,6 +22,14 @@
     return _sharedDataStore;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _fuzzDataArray = [[NSMutableArray alloc]init];
+    }
+    return self;
+}
+
 -(void) populateDatastoreWithCompletionBlock:(void (^)(void))completionBlock {
     
     [DCSFuzzAPI getFuzzDataWithCompletionBlock:^(NSArray *arrayOfDicts) {

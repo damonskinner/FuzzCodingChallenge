@@ -24,8 +24,10 @@
     
     [manager GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NSDictionary *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSArray *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
+        NSLog(@"%@",rawResults);
         completionBlock(rawResults);
+        
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);

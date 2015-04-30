@@ -1,5 +1,5 @@
 //
-//  DCSFuzzTabBarController.h
+//  DCSFuzzTextCell.h
 //  FuzzCodingChallenge
 //
 //  Created by Damon Skinner on 4/29/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCSFuzzTabBarController : UITabBarController
+@interface DCSFuzzTextCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UILabel *textLabel;
 
 @end

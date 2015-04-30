@@ -7,10 +7,11 @@
 //
 
 #import "DCSFuzzTabBarController.h"
-#import "DCSFuzzData.h"
+
 #import "DCSFuzzImagesTableViewController.h"
 #import "DCSFuzzAllDataTableViewController.h"
 #import "DCSFuzzTextTableViewController.h"
+#import <FAKFontAwesome.h>
 
 
 @interface DCSFuzzTabBarController ()
@@ -22,28 +23,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    DCSFuzzAllDataTableViewController *allDataTVC = [self makeAllDataVC];
+    DCSFuzzTextTableViewController *textTVC = [self makeTextVC];
+    DCSFuzzImagesTableViewController *imagesTVC = [self makeImagesVC];
+    
+    self.viewControllers = @[allDataTVC, textTVC, imagesTVC];
     
     
-    
-    self.datastore = [DCSFuzzDatastore sharedDataStore];
-    [self.datastore populateDatastoreWithCompletionBlock:^{
-       
-    }];
-    
-    // Do any additional setup after loading the view.
+
 }
 
 
--(void) makeAllDataVC {
+-(DCSFuzzAllDataTableViewController *) makeAllDataVC {
+    DCSFuzzAllDataTableViewController *dataVC = [[DCSFuzzAllDataTableViewController alloc]init];
     
+    UIImage *dataBarImage = [[FAKFontAwesome fileOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    dataVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"All Data" image:dataBarImage tag:1];
+    
+    return dataVC;
 }
 
--(void) makeTextVC {
+-(DCSFuzzTextTableViewController *) makeTextVC {
+    DCSFuzzTextTableViewController *textVC = [[DCSFuzzTextTableViewController alloc]init];
     
+    UIImage *textBarImage = [[FAKFontAwesome fileTextOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    textVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Text" image:textBarImage tag:1];
+    
+    return textVC;
 }
 
--(void) makeImagesVC {
+-(DCSFuzzImagesTableViewController *) makeImagesVC {
+    DCSFuzzImagesTableViewController *imagesVC = [[DCSFuzzImagesTableViewController alloc]init];
+    UIImage *imageBarImage = [[FAKFontAwesome fileImageOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
+    imagesVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Images" image:imageBarImage tag:1];
     
+    return imagesVC;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,5 +1,5 @@
 //
-//  DCSFuzzTabBarController.h
+//  DCSFuzzImageTableViewCell.h
 //  FuzzCodingChallenge
 //
 //  Created by Damon Skinner on 4/29/15.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCSFuzzTabBarController : UITabBarController
+@interface DCSFuzzImageTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

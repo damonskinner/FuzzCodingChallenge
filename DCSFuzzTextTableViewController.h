@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCSFuzzDatastore.h"
 
 @interface DCSFuzzTextTableViewController : UITableViewController
+
+@property (nonatomic, strong) DCSFuzzDatastore *datastore;
 
 @end
