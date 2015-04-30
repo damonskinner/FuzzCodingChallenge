@@ -9,6 +9,7 @@
 #import "DCSFuzzTextTableViewController.h"
 #import "DCSFuzzTextCell.h"
 #import "DCSFuzzData.h"
+#import "DCSFuzzWebViewController.h"
 
 
 @interface DCSFuzzTextTableViewController ()
@@ -23,10 +24,8 @@
     [super viewDidLoad];
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.textArray = [[NSMutableArray alloc]init];
-    [self.tableView registerClass:[DCSFuzzTextCell class] forCellReuseIdentifier:@"textCell"];
-    
-//TODO:  Fix nib versus custom class
-//    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+
+    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
 
     [self prepareTableViewForResizingCells];
     
@@ -71,10 +70,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
+    cell.fuzzText.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
 
-    cell.textLabel.numberOfLines=0;
-    cell.textLabel.lineBreakMode= NSLineBreakByWordWrapping;
+    cell.fuzzText.numberOfLines=0;
+    cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
     
     return cell;
 }
@@ -114,14 +113,21 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+     DCSFuzzWebViewController *webViewVC = [[DCSFuzzWebViewController alloc]init];
+     webViewVC.webViewURLString = @"https://fuzzproductions.com/";
+     [self presentViewController:webViewVC animated:YES completion:nil];
+ 
+ }
+
+ - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+     [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
+ 
+ return NO;
+ }
 
 @end

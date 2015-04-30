@@ -28,8 +28,7 @@
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.tableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     
-    [self.tableView registerClass:[DCSFuzzTextCell class] forCellReuseIdentifier:@"textCell"];
-//    [self.tableView registerClass:[DCSFuzzImageTableViewCell class] forCellReuseIdentifier:@"imageCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
     
     [self prepareTableViewForResizingCells];
@@ -55,6 +54,7 @@
                     
                     NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
                     [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                     NSLog(@"Fail!");
@@ -112,20 +112,16 @@
         
         cell.fuzzImage.image = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).fuzzImage;
         cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
-//        [cell.contentView sizeToFit];
+        
 
         return cell;
     } else if ([((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).type isEqualToString:@"text"]){
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
-        if(cell==nil) {
-            [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
-        }
         
-        cell.textLabel.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
+        cell.fuzzText.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
         
-        cell.textLabel.numberOfLines=0;
-        cell.textLabel.lineBreakMode= NSLineBreakByWordWrapping;
+        cell.fuzzText.numberOfLines=0;
+        cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
         return cell;
     } else {
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];

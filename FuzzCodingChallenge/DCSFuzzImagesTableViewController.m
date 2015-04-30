@@ -135,7 +135,7 @@
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView.delegate tableView:tableView didSelectRowAtIndexPath:indexPath];
     
-    return YES;
+    return NO;
 }
 
 @end

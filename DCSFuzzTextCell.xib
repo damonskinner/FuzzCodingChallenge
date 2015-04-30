@@ -12,17 +12,19 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S30-qa-iAg" id="c3f-hU-yXG">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-aI-kYm">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-aI-kYm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="S0J-a0-gmV"/>
-                            <constraint firstAttribute="width" constant="320" id="SX2-D5-XrQ"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="b7D-aI-kYm" firstAttribute="top" secondItem="c3f-hU-yXG" secondAttribute="top" constant="10" id="4i5-fw-zIf"/>
+                    <constraint firstAttribute="trailing" secondItem="b7D-aI-kYm" secondAttribute="trailing" constant="20" id="72P-5c-LKS"/>
+                    <constraint firstItem="b7D-aI-kYm" firstAttribute="leading" secondItem="c3f-hU-yXG" secondAttribute="leading" constant="20" id="74C-XY-9uJ"/>
+                    <constraint firstAttribute="bottom" secondItem="b7D-aI-kYm" secondAttribute="bottom" constant="10" id="dlZ-wS-sps"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="fuzzText" destination="b7D-aI-kYm" id="Ehr-vW-axN"/>
