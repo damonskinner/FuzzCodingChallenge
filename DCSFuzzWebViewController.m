@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     self.bottomBarView.backgroundColor = [UIColor blackColor];
     self.returnButtonLabel.tintColor = [UIColor whiteColor];
     self.topBarView.backgroundColor = [UIColor blackColor];
@@ -62,6 +63,9 @@
 }
 
 - (IBAction)returnButton:(id)sender {
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 @end

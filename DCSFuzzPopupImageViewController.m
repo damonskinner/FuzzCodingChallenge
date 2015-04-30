@@ -17,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     self.popUpImage.image=self.selectedImage;
     self.popUpImage.contentMode = UIViewContentModeScaleAspectFit;
     // Do any additional setup after loading the view from its nib.
