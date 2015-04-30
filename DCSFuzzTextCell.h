@@ -11,6 +11,7 @@
 @interface DCSFuzzTextCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *fuzzText;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 
 @end

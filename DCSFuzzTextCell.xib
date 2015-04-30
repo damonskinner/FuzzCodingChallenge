@@ -6,30 +6,41 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="textCell" id="S30-qa-iAg" customClass="DCSFuzzTextCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="textCell" rowHeight="97" id="S30-qa-iAg" customClass="DCSFuzzTextCell">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="97"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S30-qa-iAg" id="c3f-hU-yXG">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-aI-kYm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Datelabel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F5g-s4-KtU">
+                        <rect key="frame" x="299" y="0.0" width="78" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7D-aI-kYm">
+                        <rect key="frame" x="8" y="29" width="320" height="35"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="b7D-aI-kYm" firstAttribute="top" secondItem="c3f-hU-yXG" secondAttribute="top" constant="10" id="4i5-fw-zIf"/>
-                    <constraint firstAttribute="trailing" secondItem="b7D-aI-kYm" secondAttribute="trailing" constant="20" id="72P-5c-LKS"/>
-                    <constraint firstItem="b7D-aI-kYm" firstAttribute="leading" secondItem="c3f-hU-yXG" secondAttribute="leading" constant="20" id="74C-XY-9uJ"/>
-                    <constraint firstAttribute="bottom" secondItem="b7D-aI-kYm" secondAttribute="bottom" constant="10" id="dlZ-wS-sps"/>
+                    <constraint firstItem="b7D-aI-kYm" firstAttribute="leading" secondItem="c3f-hU-yXG" secondAttribute="leading" constant="20" id="0co-88-RHC"/>
+                    <constraint firstItem="F5g-s4-KtU" firstAttribute="top" secondItem="c3f-hU-yXG" secondAttribute="top" constant="8" id="HlI-9a-YdF"/>
+                    <constraint firstItem="F5g-s4-KtU" firstAttribute="leading" secondItem="c3f-hU-yXG" secondAttribute="leading" constant="299" id="IXq-xY-ivt"/>
+                    <constraint firstItem="b7D-aI-kYm" firstAttribute="top" secondItem="F5g-s4-KtU" secondAttribute="bottom" constant="8" id="P5W-k3-OGJ"/>
+                    <constraint firstAttribute="bottom" secondItem="b7D-aI-kYm" secondAttribute="bottom" constant="5" id="XVC-SW-sQ4"/>
+                    <constraint firstAttribute="trailing" secondItem="F5g-s4-KtU" secondAttribute="trailing" constant="20" id="fbS-vn-CLA"/>
+                    <constraint firstItem="b7D-aI-kYm" firstAttribute="top" secondItem="F5g-s4-KtU" secondAttribute="bottom" constant="8" id="ftM-si-xbh"/>
+                    <constraint firstAttribute="trailing" secondItem="b7D-aI-kYm" secondAttribute="trailing" constant="20" id="paN-i7-P9l"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="dateLabel" destination="F5g-s4-KtU" id="Dcv-9X-cac"/>
                 <outlet property="fuzzText" destination="b7D-aI-kYm" id="Ehr-vW-axN"/>
             </connections>
-            <point key="canvasLocation" x="195" y="364"/>
+            <point key="canvasLocation" x="230.5" y="390.5"/>
         </tableViewCell>
     </objects>
 </document>

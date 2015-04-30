@@ -67,15 +67,6 @@
         }
     }];
     
-    
-
-    
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)prepareTableViewForResizingCells {
@@ -108,7 +99,6 @@
             [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
         }
-//        cell.contentView.backgroundColor = [UIColor redColor];
         
         cell.fuzzImage.image = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).fuzzImage;
         cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
@@ -119,7 +109,7 @@
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
         
         cell.fuzzText.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
-        
+        cell.dateLabel.text = ((DCSFuzzData *) self.datastore.fuzzDataArray[indexPath.row]).date;
         cell.fuzzText.numberOfLines=0;
         cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
         return cell;
