@@ -18,15 +18,19 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSW-03-vCr">
+                <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kSW-03-vCr">
                     <rect key="frame" x="60" y="36" width="468" height="510"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </webView>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGS-YV-hFw">
+                    <rect key="frame" x="199" y="8" width="180" height="27"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rjp-sV-6kB">
-                    <rect key="frame" x="251" y="554" width="182" height="25"/>
+                    <rect key="frame" x="243" y="559" width="182" height="25"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kom-Ib-ovu">
-                            <rect key="frame" x="68" y="-2" width="46" height="30"/>
+                            <rect key="frame" x="55" y="8" width="46" height="30"/>
                             <state key="normal" title="Return">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -37,30 +41,25 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="Kom-Ib-ovu" secondAttribute="bottom" constant="3" id="QEb-7a-19X"/>
-                        <constraint firstAttribute="centerX" secondItem="Kom-Ib-ovu" secondAttribute="centerX" id="l7E-ei-fHX"/>
-                        <constraint firstItem="Kom-Ib-ovu" firstAttribute="top" secondItem="Rjp-sV-6kB" secondAttribute="top" constant="3" id="sb5-1S-8rW"/>
+                        <constraint firstAttribute="centerX" secondItem="Kom-Ib-ovu" secondAttribute="centerX" id="0fV-6O-qo2"/>
+                        <constraint firstAttribute="centerY" secondItem="Kom-Ib-ovu" secondAttribute="centerY" id="obg-N3-D6I"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nGS-YV-hFw">
-                    <rect key="frame" x="199" y="8" width="180" height="27"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Rjp-sV-6kB" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" id="2Uc-50-srB"/>
-                <constraint firstAttribute="trailing" secondItem="kSW-03-vCr" secondAttribute="trailing" constant="5" id="HnP-q7-Za2"/>
-                <constraint firstItem="Rjp-sV-6kB" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" id="LKi-di-dCh"/>
-                <constraint firstAttribute="trailing" secondItem="nGS-YV-hFw" secondAttribute="trailing" constant="5" id="PFS-Jb-hjv"/>
-                <constraint firstItem="nGS-YV-hFw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="YLd-AQ-OTo"/>
-                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="nGS-YV-hFw" secondAttribute="bottom" id="ZrY-hC-dDs"/>
-                <constraint firstItem="Rjp-sV-6kB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="aRC-M3-A0b"/>
-                <constraint firstAttribute="trailing" secondItem="Rjp-sV-6kB" secondAttribute="trailing" constant="5" id="b20-3c-gXr"/>
-                <constraint firstAttribute="bottom" secondItem="Rjp-sV-6kB" secondAttribute="bottom" constant="10" id="bnm-Jf-MLu"/>
-                <constraint firstItem="nGS-YV-hFw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="dvQ-El-2o1"/>
-                <constraint firstItem="kSW-03-vCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="frc-5A-Nur"/>
-                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="nGS-YV-hFw" secondAttribute="bottom" id="gbc-c5-czB"/>
+                <constraint firstItem="nGS-YV-hFw" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="CFO-wh-qDx"/>
+                <constraint firstAttribute="trailing" secondItem="kSW-03-vCr" secondAttribute="trailing" constant="5" id="Jas-nm-O8U"/>
+                <constraint firstAttribute="bottom" secondItem="kSW-03-vCr" secondAttribute="bottom" constant="40" id="KaX-MU-TvS"/>
+                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="nGS-YV-hFw" secondAttribute="bottom" id="NV3-wk-XDG"/>
+                <constraint firstAttribute="trailing" secondItem="Rjp-sV-6kB" secondAttribute="trailing" constant="5" id="Od6-Dj-yC9"/>
+                <constraint firstItem="Rjp-sV-6kB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="P4n-SE-fyF"/>
+                <constraint firstItem="kSW-03-vCr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="UqX-Dd-pXd"/>
+                <constraint firstItem="Rjp-sV-6kB" firstAttribute="top" secondItem="kSW-03-vCr" secondAttribute="bottom" id="aST-FY-f8k"/>
+                <constraint firstAttribute="bottom" secondItem="Rjp-sV-6kB" secondAttribute="bottom" constant="5" id="ch0-Vc-eOj"/>
+                <constraint firstItem="kSW-03-vCr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="gCJ-Wi-yQm"/>
+                <constraint firstAttribute="trailing" secondItem="nGS-YV-hFw" secondAttribute="trailing" constant="5" id="iyR-gT-cUW"/>
+                <constraint firstItem="nGS-YV-hFw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="kbq-hw-0mV"/>
             </constraints>
             <point key="canvasLocation" x="191" y="312"/>
         </view>
