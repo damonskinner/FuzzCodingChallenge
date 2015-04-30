@@ -13,6 +13,7 @@
 - (IBAction)returnButton:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *returnButtonLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;
+@property (weak, nonatomic) IBOutlet UIView *topBarView;
 
 @end
 
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     self.bottomBarView.backgroundColor = [UIColor blackColor];
     self.returnButtonLabel.tintColor = [UIColor whiteColor];
+    self.topBarView.backgroundColor = [UIColor blackColor];
 
     NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webViewURLString]];
     [self.fuzzWebView loadRequest:request];
