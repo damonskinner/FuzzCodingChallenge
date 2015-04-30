@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DCSFuzzDatastore.h"
+#import "DCSFuzzTextCell.h"
+#import "DCSFuzzImageTableViewCell.h"
 
-@interface DCSFuzzAllDataTableViewController : UITableViewController
+@interface DCSFuzzAllDataTableViewController : UITableViewController <DCSFuzzTextCellDelegate, DCSFuzzImageCellDelegate>
 
 @property (nonatomic, strong) DCSFuzzDatastore *datastore;
 @property (nonatomic, strong) NSString *test;

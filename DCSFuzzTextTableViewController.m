@@ -7,7 +7,6 @@
 //
 
 #import "DCSFuzzTextTableViewController.h"
-#import "DCSFuzzTextCell.h"
 #import "DCSFuzzData.h"
 #import "DCSFuzzWebViewController.h"
 
@@ -74,6 +73,8 @@
 
     cell.fuzzText.numberOfLines=0;
     cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
+    cell.dateLabel.text=((DCSFuzzData *)self.textArray[indexPath.row]).date;
+    cell.delegate = self;
     
     return cell;
 }
@@ -88,5 +89,12 @@
  
      return YES;
  }
+
+-(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"%ld",indexPath.row);
+    
+}
+
 
 @end

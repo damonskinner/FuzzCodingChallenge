@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DCSFuzzDatastore.h"
+#import "DCSFuzzImageTableViewCell.h"
 
-@interface DCSFuzzImagesTableViewController : UITableViewController
+@interface DCSFuzzImagesTableViewController : UITableViewController <DCSFuzzImageCellDelegate>
 
 @property (nonatomic, strong) DCSFuzzDatastore *datastore;
 

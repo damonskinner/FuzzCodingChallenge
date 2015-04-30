@@ -8,8 +8,6 @@
 
 #import "DCSFuzzAllDataTableViewController.h"
 #import "DCSFuzzData.h"
-#import "DCSFuzzTextCell.h"
-#import "DCSFuzzImageTableViewCell.h"
 #import <AFNetworking.h>
 #import "DCSFuzzImageViewController.h"
 #import "DCSFuzzWebViewController.h"
@@ -102,7 +100,8 @@
         
         cell.fuzzImage.image = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).fuzzImage;
         cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
-        
+        cell.dateLabel.text = ((DCSFuzzData *) self.datastore.fuzzDataArray[indexPath.row]).date;
+        cell.delegate = self;
 
         return cell;
     } else if ([((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).type isEqualToString:@"text"]){
@@ -110,13 +109,15 @@
         
         cell.fuzzText.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
         cell.dateLabel.text = ((DCSFuzzData *) self.datastore.fuzzDataArray[indexPath.row]).date;
+        
         cell.fuzzText.numberOfLines=0;
         cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
+        cell.delegate = self;
         return cell;
     } else {
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
         cell.fuzzText.text=((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
-        
+        cell.delegate =self;
         return cell;
     }
 }
@@ -138,6 +139,10 @@
     }
     
     return NO;
+}
+
+-(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld",indexPath.row);
 }
 
 @end

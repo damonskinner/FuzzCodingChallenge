@@ -10,9 +10,11 @@
 
 @implementation DCSFuzzTextCell
 
+
+
 - (void)awakeFromNib {
     // Initialization code
-    
+    self.dateLabel.font= [UIFont fontWithName:@"Copperplate-Light" size:16];
     
 }
 
@@ -22,4 +24,23 @@
     // Configure the view for the selected state
 }
 
+-(UITableView *)parentTableView
+{
+    // get the superview
+    id view = [self superview];
+    
+    // if the superview exists and is NOT a tableview, keep going up
+    while (view && [view isKindOfClass:[UITableView class]] == NO) {
+        view = [view superview];
+    }
+    
+    // cast it
+    UITableView *tableView = (UITableView *)view;
+    
+    return tableView;
+}
+
+- (IBAction)idButton:(id)sender {
+    [self.delegate idButtonWasTappedForIndexPath:[self.parentTableView indexPathForCell:self]];
+}
 @end

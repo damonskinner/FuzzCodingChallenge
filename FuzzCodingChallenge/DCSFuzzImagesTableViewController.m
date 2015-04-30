@@ -74,6 +74,10 @@
     
     cell.fuzzImage.image = ((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
     cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
+    cell.dateLabel.text = ((DCSFuzzData *)self.imageArray[indexPath.row]).date;
+    
+    cell.delegate = self;
+    
     
     return cell;
 }
@@ -88,6 +92,11 @@
     [self presentViewController:popUpImageVC animated:YES completion:nil];
     
     return NO;
+}
+
+
+-(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld",indexPath.row);
 }
 
 @end

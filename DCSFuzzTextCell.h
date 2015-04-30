@@ -8,10 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DCSFuzzTextCellDelegate <NSObject>
+
+-(void) idButtonWasTappedForIndexPath: (NSIndexPath *) indexPath;
+
+@end
+
+
 @interface DCSFuzzTextCell : UITableViewCell
+
+@property (nonatomic, strong) UITableView *parentTableView;
 
 @property (weak, nonatomic) IBOutlet UILabel *fuzzText;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *idButtonLabel;
+
+@property (nonatomic, strong) id <DCSFuzzTextCellDelegate> delegate;
+
+
+
+
+- (IBAction)idButton:(id)sender;
 
 
 @end
