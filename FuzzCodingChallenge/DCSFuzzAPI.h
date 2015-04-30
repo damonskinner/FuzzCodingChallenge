@@ -10,6 +10,6 @@
 
 @interface DCSFuzzAPI : NSObject
 
-+(void)getFuzzDataWithCompletionBlock:(void (^)(NSArray *))completionBlock;
++(void)getFuzzDataWithCompletionBlock:(void (^)(NSArray *, BOOL))completionBlock;
 
 @end

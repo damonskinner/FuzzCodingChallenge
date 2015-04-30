@@ -15,6 +15,7 @@
 
 + (instancetype)sharedDataStore;
 
--(void) populateDatastoreWithCompletionBlock:(void (^)(void))completionBlock;
+-(void) populateDatastoreWithCompletionBlock:(void (^)(BOOL, NSError *))completionBlock;
+-(void) downloadImagesWithCompletionBlock:(void (^)(NSInteger j))completionBlock;
 
 @end

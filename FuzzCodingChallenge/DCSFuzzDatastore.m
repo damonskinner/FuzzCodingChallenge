@@ -9,6 +9,7 @@
 #import "DCSFuzzDatastore.h"
 #import "DCSFuzzAPI.h"
 #import "DCSFuzzData.h"
+#import <AFNetworking.h>
 
 @implementation DCSFuzzDatastore
 
@@ -30,19 +31,58 @@
     return self;
 }
 
--(void) populateDatastoreWithCompletionBlock:(void (^)(void))completionBlock {
+-(void) populateDatastoreWithCompletionBlock:(void (^)(BOOL, NSError *))completionBlock {
     
-    [DCSFuzzAPI getFuzzDataWithCompletionBlock:^(NSArray *arrayOfDicts) {
+    [DCSFuzzAPI getFuzzDataWithCompletionBlock:^(NSArray *arrayOfDicts, BOOL success) {
         
-        for (NSDictionary *eachDictionary in arrayOfDicts) {
-            [self.fuzzDataArray addObject:[DCSFuzzData dataFromDictionary:eachDictionary]];
-            
+        if (success) {
+            for (NSDictionary *eachDictionary in arrayOfDicts) {
+                [self.fuzzDataArray addObject:[DCSFuzzData dataFromDictionary:eachDictionary]];
+                
+            }
+            completionBlock(YES, nil);
+        } else {
+            completionBlock(NO, arrayOfDicts[0]);
         }
-        completionBlock();
+        
     }];
     
 }
 
+
+-(void) downloadImagesWithCompletionBlock:(void (^)(NSInteger j))completionBlock {
+    for (NSInteger i=0;i<[self.fuzzDataArray count];i++) {
+        if ([((DCSFuzzData *)self.fuzzDataArray[i]).type isEqualToString:@"image"]) {
+            NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
+            [myQueue setMaxConcurrentOperationCount:10];
+            NSURL *imageURL = [NSURL URLWithString:((DCSFuzzData *)self.fuzzDataArray[i]).data];
+            
+            NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL:imageURL];
+            AFHTTPRequestOperation *imageDownload = [[AFHTTPRequestOperation alloc] initWithRequest:imageRequest];
+            imageDownload.responseSerializer = [[AFImageResponseSerializer alloc] init];
+            
+            [imageDownload setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=responseObject;
+                
+                completionBlock(i);
+                
+                if (i==[self.fuzzDataArray count]-1) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+                }
+                
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Fail!");
+                ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=[UIImage imageNamed:@"no_image"];
+                
+            }];
+            
+            [myQueue addOperation:imageDownload];
+            
+        }
+    }
+}
 
 
 @end

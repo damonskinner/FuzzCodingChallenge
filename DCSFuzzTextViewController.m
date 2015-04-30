@@ -24,11 +24,27 @@
     [super viewDidLoad];
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.textArray = [[NSMutableArray alloc]init];
-
     
-    
-    self.myTableView = [[UITableView alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setupTableView];
+
+    [self prepareTableViewForResizingCells];
+    
+    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
+        if ([eachData.type isEqualToString:@"text"]) {
+            [self.textArray addObject:eachData];
+        }
+    }
+    [self.myTableView reloadData];
+}
+
+-(void) setupTableView {
+    self.myTableView = [[UITableView alloc]init];
+    
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource=self;
+    
     [self.view addSubview:self.myTableView];
     
     [self.view removeConstraints:self.view.constraints];
@@ -37,27 +53,10 @@
     
     [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
     
-    self.myTableView.delegate = self;
-    self.myTableView.dataSource=self;
-    
     NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-20-|" options:0 metrics:nil views:views]];
-
-    [self prepareTableViewForResizingCells];
-    
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.myTableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
-    
-    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
-        if ([eachData.type isEqualToString:@"text"]) {
-            [self.textArray addObject:eachData];
-        }
-    }
-    [self.myTableView reloadData];
-    
-    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-50-|" options:0 metrics:nil views:views]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,6 +109,13 @@
  }
 
 -(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    
+    UIAlertController *idAlert = [self makeIDAlertControllerWithIndexPath:indexPath];
+    [self presentViewController:idAlert animated:YES completion:nil];
+    
+}
+
+-(UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath {
     UIAlertController *idAlert = [UIAlertController alertControllerWithTitle:@"Data ID:"
                                                                      message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).dataId]
                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -118,9 +124,7 @@
                                                               
                                                           }];
     [idAlert addAction:defaultAction];
-    
-    [self presentViewController:idAlert animated:YES completion:nil];
-    
+    return idAlert;
 }
 
 

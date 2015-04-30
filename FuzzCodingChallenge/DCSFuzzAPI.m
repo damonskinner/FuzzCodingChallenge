@@ -12,7 +12,7 @@
 
 @implementation DCSFuzzAPI
 
-+(void)getFuzzDataWithCompletionBlock:(void (^)(NSArray *))completionBlock
++(void)getFuzzDataWithCompletionBlock:(void (^)(NSArray *, BOOL))completionBlock
 {
     NSString *urlString = FuzzURLString;
     
@@ -26,11 +26,13 @@
         
         NSArray *rawResults = [NSJSONSerialization JSONObjectWithData:responseObject options:0 error:nil];
         NSLog(@"%@",rawResults);
-        completionBlock(rawResults);
+        completionBlock(rawResults, YES);
         
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"Fail: %@",error.localizedDescription);
+        NSArray *errorArray = @[error];
+        completionBlock(errorArray, NO);
     }];
 }
 

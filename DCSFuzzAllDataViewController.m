@@ -25,10 +25,37 @@
     [super viewDidLoad];
     
     self.datastore = [DCSFuzzDatastore sharedDataStore];
-    
-    self.myTableView = [[UITableView alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setupTableView];
+    
+    [self prepareTableViewForResizingCells];
+    
+   
+    [self.datastore populateDatastoreWithCompletionBlock:^(BOOL success, NSError *error){
+        
+        if (success) {
+            [self.myTableView reloadData];
+            
+            [self.datastore downloadImagesWithCompletionBlock:^(NSInteger j) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:j inSection:0];
+                [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
+            }];
+        } else {
+            UIAlertController *errorAlert = [self makeErrorAlertWithError:error];
+            
+            [self presentViewController:errorAlert animated:YES completion:nil];
+        }
+        
+    }];
+    
+}
+
+-(void) setupTableView {
+    self.myTableView = [[UITableView alloc]init];
     [self.view addSubview:self.myTableView];
+    
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource=self;
     
     [self.view removeConstraints:self.view.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
@@ -36,60 +63,13 @@
     
     [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
     
-    self.myTableView.delegate = self;
-    self.myTableView.dataSource=self;
-    
     NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-20-|" options:0 metrics:nil views:views]];
-    
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.myTableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-50-|" options:0 metrics:nil views:views]];
     
     [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
     [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
-    
-    [self prepareTableViewForResizingCells];
-    
-    
-    self.datastore = [DCSFuzzDatastore sharedDataStore];
-    [self.datastore populateDatastoreWithCompletionBlock:^{
-        [self.myTableView reloadData];
-        
-        for (NSInteger i=0;i<[self.datastore.fuzzDataArray count];i++) {
-            if ([((DCSFuzzData *)self.datastore.fuzzDataArray[i]).type isEqualToString:@"image"]) {
-                NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
-                [myQueue setMaxConcurrentOperationCount:10];
-                NSURL *imageURL = [NSURL URLWithString:((DCSFuzzData *)self.datastore.fuzzDataArray[i]).data];
-                
-                NSURLRequest *imageRequest = [[NSURLRequest alloc] initWithURL:imageURL];
-                AFHTTPRequestOperation *imageDownload = [[AFHTTPRequestOperation alloc] initWithRequest:imageRequest];
-                imageDownload.responseSerializer = [[AFImageResponseSerializer alloc] init];
-                
-                [imageDownload setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                    
-                    ((DCSFuzzData *)self.datastore.fuzzDataArray[i]).fuzzImage=responseObject;
-                    
-                    NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
-                    if (i==[self.datastore.fuzzDataArray count]-1) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
-                    }
-
-                    
-                } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                    NSLog(@"Fail!");
-                    ((DCSFuzzData *)self.datastore.fuzzDataArray[i]).fuzzImage=[UIImage imageNamed:@"no_image"];
-                    
-                }];
-                
-                [myQueue addOperation:imageDownload];
-                
-            }
-        }
-    }];
-    
 }
 
 - (void)prepareTableViewForResizingCells {
@@ -167,6 +147,13 @@
 }
 
 -(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    
+    UIAlertController *idAlert = [self makeIDAlertControllerWithIndexPath:indexPath];
+    [self presentViewController:idAlert animated:YES completion:nil];
+    
+}
+
+-(UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath {
     UIAlertController *idAlert = [UIAlertController alertControllerWithTitle:@"Data ID:"
                                                                      message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).dataId]
                                                               preferredStyle:UIAlertControllerStyleAlert];
@@ -175,10 +162,20 @@
                                                               
                                                           }];
     [idAlert addAction:defaultAction];
+    return idAlert;
+}
+
+-(UIAlertController *) makeErrorAlertWithError: (NSError *) error {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"No Connection"
+                                                                        message:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler: ^(UIAlertAction *action) {
+                                                              
+                                                          }];
+    [errorAlert addAction:defaultAction];
     
-    [self presentViewController:idAlert animated:YES completion:nil];
-    
-    
+    return errorAlert;
 }
 
 @end
