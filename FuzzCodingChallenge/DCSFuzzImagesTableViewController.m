@@ -71,11 +71,9 @@
         [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
     }
-    //        cell.contentView.backgroundColor = [UIColor redColor];
     
     cell.fuzzImage.image = ((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
     cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
-    //        [cell.contentView sizeToFit];
     
     return cell;
 }

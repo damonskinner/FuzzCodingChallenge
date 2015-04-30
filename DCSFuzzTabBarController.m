@@ -47,7 +47,7 @@
     DCSFuzzTextTableViewController *textVC = [[DCSFuzzTextTableViewController alloc]init];
     
     UIImage *textBarImage = [[FAKFontAwesome fileTextOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    textVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Text" image:textBarImage tag:1];
+    textVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Text" image:textBarImage tag:2];
     
     return textVC;
 }
@@ -55,7 +55,7 @@
 -(DCSFuzzImagesTableViewController *) makeImagesVC {
     DCSFuzzImagesTableViewController *imagesVC = [[DCSFuzzImagesTableViewController alloc]init];
     UIImage *imageBarImage = [[FAKFontAwesome fileImageOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
-    imagesVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Images" image:imageBarImage tag:1];
+    imagesVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Images" image:imageBarImage tag:3];
     
     return imagesVC;
 }

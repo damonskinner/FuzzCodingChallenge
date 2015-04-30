@@ -71,12 +71,12 @@
 		369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzImageTableViewCell.xib; sourceTree = "<group>"; };
 		369FD3681AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzImageTableViewCell.h; sourceTree = "<group>"; };
 		369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzImageTableViewCell.m; sourceTree = "<group>"; };
-		36ED69031AF1970F008EA7D3 /* DCSFuzzDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzDatastore.h; sourceTree = "<group>"; };
-		36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzDatastore.m; sourceTree = "<group>"; };
-		36ED69061AF19741008EA7D3 /* DCSFuzzAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzAPI.h; sourceTree = "<group>"; };
-		36ED69071AF19741008EA7D3 /* DCSFuzzAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzAPI.m; sourceTree = "<group>"; };
-		36ED69091AF1976C008EA7D3 /* DCSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSConstants.h; sourceTree = "<group>"; };
-		36ED690A1AF1976C008EA7D3 /* DCSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSConstants.m; sourceTree = "<group>"; };
+		36ED69031AF1970F008EA7D3 /* DCSFuzzDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSFuzzDatastore.h; path = FuzzCodingChallenge/DCSFuzzDatastore.h; sourceTree = "<group>"; };
+		36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSFuzzDatastore.m; path = FuzzCodingChallenge/DCSFuzzDatastore.m; sourceTree = "<group>"; };
+		36ED69061AF19741008EA7D3 /* DCSFuzzAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSFuzzAPI.h; path = FuzzCodingChallenge/DCSFuzzAPI.h; sourceTree = "<group>"; };
+		36ED69071AF19741008EA7D3 /* DCSFuzzAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSFuzzAPI.m; path = FuzzCodingChallenge/DCSFuzzAPI.m; sourceTree = "<group>"; };
+		36ED69091AF1976C008EA7D3 /* DCSConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSConstants.h; path = FuzzCodingChallenge/DCSConstants.h; sourceTree = "<group>"; };
+		36ED690A1AF1976C008EA7D3 /* DCSConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSConstants.m; path = FuzzCodingChallenge/DCSConstants.m; sourceTree = "<group>"; };
 		36ED690C1AF19900008EA7D3 /* DCSFuzzData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzData.h; sourceTree = "<group>"; };
 		36ED690D1AF19900008EA7D3 /* DCSFuzzData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzData.m; sourceTree = "<group>"; };
 		36ED690F1AF19BD5008EA7D3 /* DCSFuzzTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTabBarController.h; sourceTree = "<group>"; };
@@ -119,9 +119,12 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		368126831AF17E9000101034 = {
+		36594FA51AF1E6470010E3D1 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				369FD35A1AF1A793009FB9A7 /* DCSFuzzTextCell.h */,
+				36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */,
+				369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */,
 				36594FA01AF1DDE10010E3D1 /* DCSFuzzWebViewController.h */,
 				36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */,
 				36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */,
@@ -131,9 +134,47 @@
 				369FD3681AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.h */,
 				369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */,
 				369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */,
-				36ED691B1AF19C81008EA7D3 /* ViewControllers */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		36594FA61AF1E6790010E3D1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				36ED69091AF1976C008EA7D3 /* DCSConstants.h */,
+				36ED690A1AF1976C008EA7D3 /* DCSConstants.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		36594FA71AF1E6910010E3D1 /* Data */ = {
+			isa = PBXGroup;
+			children = (
 				36ED690C1AF19900008EA7D3 /* DCSFuzzData.h */,
 				36ED690D1AF19900008EA7D3 /* DCSFuzzData.m */,
+				36ED69031AF1970F008EA7D3 /* DCSFuzzDatastore.h */,
+				36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		36594FA81AF1E6B90010E3D1 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				36ED69061AF19741008EA7D3 /* DCSFuzzAPI.h */,
+				36ED69071AF19741008EA7D3 /* DCSFuzzAPI.m */,
+			);
+			name = APIs;
+			sourceTree = "<group>";
+		};
+		368126831AF17E9000101034 = {
+			isa = PBXGroup;
+			children = (
+				36594FA81AF1E6B90010E3D1 /* APIs */,
+				36594FA71AF1E6910010E3D1 /* Data */,
+				36594FA61AF1E6790010E3D1 /* Supporting Files */,
+				36594FA51AF1E6470010E3D1 /* Xibs */,
+				36ED691B1AF19C81008EA7D3 /* ViewControllers */,
 				36594F991AF1D49A0010E3D1 /* placeholder.png */,
 				3681268E1AF17E9000101034 /* FuzzCodingChallenge */,
 				368126A81AF17E9000101034 /* FuzzCodingChallengeTests */,
@@ -163,12 +204,6 @@
 				3681269C1AF17E9000101034 /* Images.xcassets */,
 				3681269E1AF17E9000101034 /* LaunchScreen.xib */,
 				3681268F1AF17E9000101034 /* Supporting Files */,
-				36ED69031AF1970F008EA7D3 /* DCSFuzzDatastore.h */,
-				36ED69041AF1970F008EA7D3 /* DCSFuzzDatastore.m */,
-				36ED69061AF19741008EA7D3 /* DCSFuzzAPI.h */,
-				36ED69071AF19741008EA7D3 /* DCSFuzzAPI.m */,
-				36ED69091AF1976C008EA7D3 /* DCSConstants.h */,
-				36ED690A1AF1976C008EA7D3 /* DCSConstants.m */,
 			);
 			path = FuzzCodingChallenge;
 			sourceTree = "<group>";
@@ -210,9 +245,6 @@
 				36ED69191AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m */,
 				36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.h */,
 				36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m */,
-				369FD35A1AF1A793009FB9A7 /* DCSFuzzTextCell.h */,
-				36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */,
-				369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
