@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */; };
 		36594F9A1AF1D49A0010E3D1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 36594F991AF1D49A0010E3D1 /* placeholder.png */; };
-		36594F9E1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36594F9C1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.m */; };
-		36594F9F1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F9D1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib */; };
+		36594F9E1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36594F9C1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m */; };
+		36594F9F1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F9D1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.xib */; };
 		36594FA31AF1DDE10010E3D1 /* DCSFuzzWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */; };
 		36594FA41AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */; };
 		36594FAA1AF2B6500010E3D1 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 36594FA91AF2B6500010E3D1 /* no_image.png */; };
@@ -28,9 +28,9 @@
 		36ED690B1AF1976C008EA7D3 /* DCSConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED690A1AF1976C008EA7D3 /* DCSConstants.m */; };
 		36ED690E1AF19900008EA7D3 /* DCSFuzzData.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED690D1AF19900008EA7D3 /* DCSFuzzData.m */; };
 		36ED69111AF19BD5008EA7D3 /* DCSFuzzTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69101AF19BD5008EA7D3 /* DCSFuzzTabBarController.m */; };
-		36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m */; };
-		36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.m */; };
-		36ED691A1AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69191AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m */; };
+		36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m */; };
+		36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m */; };
+		36ED691A1AF19C78008EA7D3 /* DCSFuzzTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69191AF19C78008EA7D3 /* DCSFuzzTextViewController.m */; };
 		91C8B54D7E697469353F7B13 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA7C613EE166D3BEBCC6DB6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -47,9 +47,9 @@
 /* Begin PBXFileReference section */
 		36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzTextCell.xib; sourceTree = "<group>"; };
 		36594F991AF1D49A0010E3D1 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
-		36594F9B1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzImageViewController.h; sourceTree = "<group>"; };
-		36594F9C1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzImageViewController.m; sourceTree = "<group>"; };
-		36594F9D1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzImageViewController.xib; sourceTree = "<group>"; };
+		36594F9B1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzPopupImageViewController.h; sourceTree = "<group>"; };
+		36594F9C1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzPopupImageViewController.m; sourceTree = "<group>"; };
+		36594F9D1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzPopupImageViewController.xib; sourceTree = "<group>"; };
 		36594FA01AF1DDE10010E3D1 /* DCSFuzzWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzWebViewController.h; sourceTree = "<group>"; };
 		36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzWebViewController.m; sourceTree = "<group>"; };
 		36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzWebViewController.xib; sourceTree = "<group>"; };
@@ -80,12 +80,12 @@
 		36ED690D1AF19900008EA7D3 /* DCSFuzzData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzData.m; sourceTree = "<group>"; };
 		36ED690F1AF19BD5008EA7D3 /* DCSFuzzTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTabBarController.h; sourceTree = "<group>"; };
 		36ED69101AF19BD5008EA7D3 /* DCSFuzzTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTabBarController.m; sourceTree = "<group>"; };
-		36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzAllDataTableViewController.h; sourceTree = "<group>"; };
-		36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzAllDataTableViewController.m; sourceTree = "<group>"; };
-		36ED69151AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSFuzzImagesTableViewController.h; path = FuzzCodingChallenge/DCSFuzzImagesTableViewController.h; sourceTree = "<group>"; };
-		36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSFuzzImagesTableViewController.m; path = FuzzCodingChallenge/DCSFuzzImagesTableViewController.m; sourceTree = "<group>"; };
-		36ED69181AF19C78008EA7D3 /* DCSFuzzTextTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextTableViewController.h; sourceTree = "<group>"; };
-		36ED69191AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextTableViewController.m; sourceTree = "<group>"; };
+		36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzAllDataViewController.h; sourceTree = "<group>"; };
+		36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzAllDataViewController.m; sourceTree = "<group>"; };
+		36ED69151AF19C6B008EA7D3 /* DCSFuzzImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSFuzzImagesViewController.h; path = FuzzCodingChallenge/DCSFuzzImagesViewController.h; sourceTree = "<group>"; };
+		36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSFuzzImagesViewController.m; path = FuzzCodingChallenge/DCSFuzzImagesViewController.m; sourceTree = "<group>"; };
+		36ED69181AF19C78008EA7D3 /* DCSFuzzTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextViewController.h; sourceTree = "<group>"; };
+		36ED69191AF19C78008EA7D3 /* DCSFuzzTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextViewController.m; sourceTree = "<group>"; };
 		5BA7C613EE166D3BEBCC6DB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AED3ECBA675DBBF9BA3B439 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E0B24C3269F1EE38EC407814 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -127,9 +127,9 @@
 				36594FA01AF1DDE10010E3D1 /* DCSFuzzWebViewController.h */,
 				36594FA11AF1DDE10010E3D1 /* DCSFuzzWebViewController.m */,
 				36594FA21AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib */,
-				36594F9B1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.h */,
-				36594F9C1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.m */,
-				36594F9D1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib */,
+				36594F9B1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.h */,
+				36594F9C1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m */,
+				36594F9D1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.xib */,
 				369FD3681AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.h */,
 				369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */,
 				369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */,
@@ -237,12 +237,12 @@
 			children = (
 				36ED690F1AF19BD5008EA7D3 /* DCSFuzzTabBarController.h */,
 				36ED69101AF19BD5008EA7D3 /* DCSFuzzTabBarController.m */,
-				36ED69151AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.h */,
-				36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.m */,
-				36ED69181AF19C78008EA7D3 /* DCSFuzzTextTableViewController.h */,
-				36ED69191AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m */,
-				36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.h */,
-				36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m */,
+				36ED69151AF19C6B008EA7D3 /* DCSFuzzImagesViewController.h */,
+				36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m */,
+				36ED69181AF19C78008EA7D3 /* DCSFuzzTextViewController.h */,
+				36ED69191AF19C78008EA7D3 /* DCSFuzzTextViewController.m */,
+				36ED69121AF19C24008EA7D3 /* DCSFuzzAllDataViewController.h */,
+				36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3681269B1AF17E9000101034 /* Main.storyboard in Resources */,
-				36594F9F1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.xib in Resources */,
+				36594F9F1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.xib in Resources */,
 				36594F9A1AF1D49A0010E3D1 /* placeholder.png in Resources */,
 				36594FA41AF1DDE10010E3D1 /* DCSFuzzWebViewController.xib in Resources */,
 				36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */,
@@ -400,17 +400,17 @@
 				36ED690B1AF1976C008EA7D3 /* DCSConstants.m in Sources */,
 				369FD35D1AF1A793009FB9A7 /* DCSFuzzTextCell.m in Sources */,
 				36ED69051AF1970F008EA7D3 /* DCSFuzzDatastore.m in Sources */,
-				36594F9E1AF1D9BA0010E3D1 /* DCSFuzzImageViewController.m in Sources */,
+				36594F9E1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m in Sources */,
 				36ED690E1AF19900008EA7D3 /* DCSFuzzData.m in Sources */,
 				368126951AF17E9000101034 /* AppDelegate.m in Sources */,
 				36594FA31AF1DDE10010E3D1 /* DCSFuzzWebViewController.m in Sources */,
 				36ED69111AF19BD5008EA7D3 /* DCSFuzzTabBarController.m in Sources */,
 				369FD36A1AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */,
-				36ED691A1AF19C78008EA7D3 /* DCSFuzzTextTableViewController.m in Sources */,
+				36ED691A1AF19C78008EA7D3 /* DCSFuzzTextViewController.m in Sources */,
 				368126921AF17E9000101034 /* main.m in Sources */,
-				36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataTableViewController.m in Sources */,
+				36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m in Sources */,
 				36ED69081AF19741008EA7D3 /* DCSFuzzAPI.m in Sources */,
-				36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesTableViewController.m in Sources */,
+				36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

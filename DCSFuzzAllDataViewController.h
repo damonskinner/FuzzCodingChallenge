@@ -11,7 +11,7 @@
 #import "DCSFuzzTextCell.h"
 #import "DCSFuzzImageTableViewCell.h"
 
-@interface DCSFuzzAllDataTableViewController : UITableViewController <DCSFuzzTextCellDelegate, DCSFuzzImageCellDelegate>
+@interface DCSFuzzAllDataViewController : UIViewController <DCSFuzzTextCellDelegate, DCSFuzzImageCellDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) DCSFuzzDatastore *datastore;
 @property (nonatomic, strong) NSString *test;

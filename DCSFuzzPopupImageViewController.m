@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 DamonSkinner. All rights reserved.
 //
 
-#import "DCSFuzzImageViewController.h"
+#import "DCSFuzzPopupImageViewController.h"
 
-@interface DCSFuzzImageViewController ()
+@interface DCSFuzzPopupImageViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *popUpImage;
 
 @end
 
-@implementation DCSFuzzImageViewController
+@implementation DCSFuzzPopupImageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

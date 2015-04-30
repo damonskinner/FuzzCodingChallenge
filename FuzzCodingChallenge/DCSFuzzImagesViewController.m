@@ -6,37 +6,67 @@
 //  Copyright (c) 2015 DamonSkinner. All rights reserved.
 //
 
-#import "DCSFuzzImagesTableViewController.h"
+#import "DCSFuzzImagesViewController.h"
 #import "DCSFuzzImageTableViewCell.h"
 #import "DCSFuzzData.h"
-#import "DCSFuzzImageViewController.h"
+#import "DCSFuzzPopupImageViewController.h"
 
-@interface DCSFuzzImagesTableViewController ()
+@interface DCSFuzzImagesViewController ()
 
 @property (nonatomic, strong) NSMutableArray *imageArray;
+@property (nonatomic, strong) UITableView *myTableView;
 
 @end
 
-@implementation DCSFuzzImagesTableViewController
+@implementation DCSFuzzImagesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.imageArray = [[NSMutableArray alloc]init];
-
-    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
+    self.myTableView = [[UITableView alloc]init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.myTableView];
+    
+    [self.view removeConstraints:self.view.constraints];
+    [self.myTableView removeConstraints:self.myTableView.constraints];
+    self.myTableView.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource=self;
+    
+    NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-20-|" options:0 metrics:nil views:views]];
+    
+    
+    [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
+    
+    
     
     [self prepareTableViewForResizingCells];
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    self.myTableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     
     for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
         if ([eachData.type isEqualToString:@"image"]) {
             [self.imageArray addObject:eachData];
         }
     }
-    [self.tableView reloadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    
+    [self.myTableView reloadData];
+}
+
+- (void)reloadTable:(NSNotification *)notification {
+    [self.myTableView reloadData];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,8 +75,8 @@
 }
 
 - (void)prepareTableViewForResizingCells {
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 50.0;
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
+    self.myTableView.estimatedRowHeight = 50.0;
 }
 
 #pragma mark - Table view data source
@@ -87,7 +117,7 @@
 
 //originally used didSelectRowAtIndexPath 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-    DCSFuzzImageViewController *popUpImageVC = [[DCSFuzzImageViewController alloc] init];
+    DCSFuzzPopupImageViewController *popUpImageVC = [[DCSFuzzPopupImageViewController alloc] init];
     popUpImageVC.selectedImage =((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
     [self presentViewController:popUpImageVC animated:YES completion:nil];
     

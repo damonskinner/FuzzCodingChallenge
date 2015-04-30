@@ -6,36 +6,56 @@
 //  Copyright (c) 2015 DamonSkinner. All rights reserved.
 //
 
-#import "DCSFuzzAllDataTableViewController.h"
+#import "DCSFuzzAllDataViewController.h"
 #import "DCSFuzzData.h"
 #import <AFNetworking.h>
-#import "DCSFuzzImageViewController.h"
+#import "DCSFuzzPopupImageViewController.h"
 #import "DCSFuzzWebViewController.h"
 
 
-@interface DCSFuzzAllDataTableViewController ()
+@interface DCSFuzzAllDataViewController ()
+
+@property (nonatomic, strong) UITableView *myTableView;
 
 @end
 
-@implementation DCSFuzzAllDataTableViewController
+@implementation DCSFuzzAllDataViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     
-    self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    self.myTableView = [[UITableView alloc]init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.myTableView];
     
-    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
+    [self.view removeConstraints:self.view.constraints];
+    [self.myTableView removeConstraints:self.myTableView.constraints];
+    self.myTableView.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+    
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource=self;
+    
+    NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-20-|" options:0 metrics:nil views:views]];
+    
+    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.myTableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    
+    [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+    [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
     
     [self prepareTableViewForResizingCells];
     
     
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     [self.datastore populateDatastoreWithCompletionBlock:^{
-        [self.tableView reloadData];
+        [self.myTableView reloadData];
         
         for (NSInteger i=0;i<[self.datastore.fuzzDataArray count];i++) {
             if ([((DCSFuzzData *)self.datastore.fuzzDataArray[i]).type isEqualToString:@"image"]) {
@@ -52,7 +72,10 @@
                     ((DCSFuzzData *)self.datastore.fuzzDataArray[i]).fuzzImage=responseObject;
                     
                     NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
-                    [self.tableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    if (i==[self.datastore.fuzzDataArray count]-1) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+                    }
 
                     
                 } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -70,8 +93,8 @@
 }
 
 - (void)prepareTableViewForResizingCells {
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 50.0;
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
+    self.myTableView.estimatedRowHeight = 50.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -129,7 +152,7 @@
 //originally used didSelectRowAtIndexPath 
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).type isEqualToString:@"image"]) {
-        DCSFuzzImageViewController *popUpImageVC = [[DCSFuzzImageViewController alloc] init];
+        DCSFuzzPopupImageViewController *popUpImageVC = [[DCSFuzzPopupImageViewController alloc] init];
         popUpImageVC.selectedImage =((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).fuzzImage;
         [self presentViewController:popUpImageVC animated:YES completion:nil];
         return NO;

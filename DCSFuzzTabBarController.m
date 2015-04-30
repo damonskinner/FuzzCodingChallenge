@@ -8,9 +8,9 @@
 
 #import "DCSFuzzTabBarController.h"
 
-#import "DCSFuzzImagesTableViewController.h"
-#import "DCSFuzzAllDataTableViewController.h"
-#import "DCSFuzzTextTableViewController.h"
+#import "DCSFuzzImagesViewController.h"
+#import "DCSFuzzAllDataViewController.h"
+#import "DCSFuzzTextViewController.h"
 #import <FAKFontAwesome.h>
 
 
@@ -23,16 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    DCSFuzzAllDataTableViewController *allDataTVC = [self makeAllDataVC];
-    DCSFuzzTextTableViewController *textTVC = [self makeTextVC];
-    DCSFuzzImagesTableViewController *imagesTVC = [self makeImagesVC];
+    DCSFuzzAllDataViewController *allDataTVC = [self makeAllDataVC];
+    DCSFuzzTextViewController *textTVC = [self makeTextVC];
+    DCSFuzzImagesViewController *imagesTVC = [self makeImagesVC];
     
     self.viewControllers = @[allDataTVC, textTVC, imagesTVC];
 }
 
 
--(DCSFuzzAllDataTableViewController *) makeAllDataVC {
-    DCSFuzzAllDataTableViewController *dataVC = [[DCSFuzzAllDataTableViewController alloc]init];
+-(DCSFuzzAllDataViewController *) makeAllDataVC {
+    DCSFuzzAllDataViewController *dataVC = [[DCSFuzzAllDataViewController alloc]init];
     
     UIImage *dataBarImage = [[FAKFontAwesome fileOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     dataVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"All Data" image:dataBarImage tag:1];
@@ -40,8 +40,8 @@
     return dataVC;
 }
 
--(DCSFuzzTextTableViewController *) makeTextVC {
-    DCSFuzzTextTableViewController *textVC = [[DCSFuzzTextTableViewController alloc]init];
+-(DCSFuzzTextViewController *) makeTextVC {
+    DCSFuzzTextViewController *textVC = [[DCSFuzzTextViewController alloc]init];
     
     UIImage *textBarImage = [[FAKFontAwesome fileTextOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     textVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Text" image:textBarImage tag:2];
@@ -49,8 +49,8 @@
     return textVC;
 }
 
--(DCSFuzzImagesTableViewController *) makeImagesVC {
-    DCSFuzzImagesTableViewController *imagesVC = [[DCSFuzzImagesTableViewController alloc]init];
+-(DCSFuzzImagesViewController *) makeImagesVC {
+    DCSFuzzImagesViewController *imagesVC = [[DCSFuzzImagesViewController alloc]init];
     UIImage *imageBarImage = [[FAKFontAwesome fileImageOIconWithSize:30] imageWithSize:CGSizeMake(30, 30)];
     imagesVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Images" image:imageBarImage tag:3];
     

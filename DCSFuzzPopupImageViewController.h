@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DCSFuzzImageViewController : UIViewController
+@interface DCSFuzzPopupImageViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *selectedImage;
 

@@ -6,37 +6,56 @@
 //  Copyright (c) 2015 DamonSkinner. All rights reserved.
 //
 
-#import "DCSFuzzTextTableViewController.h"
+#import "DCSFuzzTextViewController.h"
 #import "DCSFuzzData.h"
 #import "DCSFuzzWebViewController.h"
 
 
-@interface DCSFuzzTextTableViewController ()
+@interface DCSFuzzTextViewController ()
 
 @property (nonatomic, strong) NSMutableArray *textArray;
+@property (nonatomic, strong) UITableView *myTableView;
 
 @end
 
-@implementation DCSFuzzTextTableViewController
+@implementation DCSFuzzTextViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.textArray = [[NSMutableArray alloc]init];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+    
+    
+    self.myTableView = [[UITableView alloc]init];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.myTableView];
+    
+    [self.view removeConstraints:self.view.constraints];
+    [self.myTableView removeConstraints:self.myTableView.constraints];
+    self.myTableView.translatesAutoresizingMaskIntoConstraints=NO;
+    
+    [self.myTableView registerNib:[UINib nibWithNibName:@"DCSFuzzTextCell" bundle:nil] forCellReuseIdentifier:@"textCell"];
+    
+    self.myTableView.delegate = self;
+    self.myTableView.dataSource=self;
+    
+    NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-20-|" options:0 metrics:nil views:views]];
 
     [self prepareTableViewForResizingCells];
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
-    self.tableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
+    self.myTableView.contentInset = UIEdgeInsetsMake(10.0f, 0.0f, CGRectGetHeight(self.tabBarController.tabBar.frame), 0.0f);
     
     for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
         if ([eachData.type isEqualToString:@"text"]) {
             [self.textArray addObject:eachData];
         }
     }
-    [self.tableView reloadData];
+    [self.myTableView reloadData];
     
     
 }
@@ -61,8 +80,8 @@
 }
 
 - (void)prepareTableViewForResizingCells {
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 50.0;
+    self.myTableView.rowHeight = UITableViewAutomaticDimension;
+    self.myTableView.estimatedRowHeight = 50.0;
 }
 
 
