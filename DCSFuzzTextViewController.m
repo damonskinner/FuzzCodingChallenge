@@ -117,7 +117,7 @@
 
 -(UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath {
     UIAlertController *idAlert = [UIAlertController alertControllerWithTitle:@"Data ID:"
-                                                                     message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).dataId]
+                                                                     message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.textArray[indexPath.row]).dataId]
                                                               preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                           handler: ^(UIAlertAction *action) {
