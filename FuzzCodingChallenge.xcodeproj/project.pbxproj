@@ -31,6 +31,7 @@
 		36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69131AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m */; };
 		36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m */; };
 		36ED691A1AF19C78008EA7D3 /* DCSFuzzTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36ED69191AF19C78008EA7D3 /* DCSFuzzTextViewController.m */; };
+		36F403AE1AF6E812001C84D1 /* concrete_seamless.png in Resources */ = {isa = PBXBuildFile; fileRef = 36F403AD1AF6E812001C84D1 /* concrete_seamless.png */; };
 		91C8B54D7E697469353F7B13 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA7C613EE166D3BEBCC6DB6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +87,7 @@
 		36ED69161AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSFuzzImagesViewController.m; path = FuzzCodingChallenge/DCSFuzzImagesViewController.m; sourceTree = "<group>"; };
 		36ED69181AF19C78008EA7D3 /* DCSFuzzTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextViewController.h; sourceTree = "<group>"; };
 		36ED69191AF19C78008EA7D3 /* DCSFuzzTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextViewController.m; sourceTree = "<group>"; };
+		36F403AD1AF6E812001C84D1 /* concrete_seamless.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = concrete_seamless.png; sourceTree = "<group>"; };
 		5BA7C613EE166D3BEBCC6DB6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7AED3ECBA675DBBF9BA3B439 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E0B24C3269F1EE38EC407814 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			children = (
 				36594F991AF1D49A0010E3D1 /* placeholder.png */,
 				36594FA91AF2B6500010E3D1 /* no_image.png */,
+				36F403AD1AF6E812001C84D1 /* concrete_seamless.png */,
 				36ED69091AF1976C008EA7D3 /* DCSConstants.h */,
 				36ED690A1AF1976C008EA7D3 /* DCSConstants.m */,
 			);
@@ -345,6 +348,7 @@
 				36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */,
 				368126A01AF17E9000101034 /* LaunchScreen.xib in Resources */,
 				3681269D1AF17E9000101034 /* Images.xcassets in Resources */,
+				36F403AE1AF6E812001C84D1 /* concrete_seamless.png in Resources */,
 				36594FAA1AF2B6500010E3D1 /* no_image.png in Resources */,
 				369FD3671AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */,
 			);

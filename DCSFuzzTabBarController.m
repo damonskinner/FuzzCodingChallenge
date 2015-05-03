@@ -7,6 +7,7 @@
 //
 
 #import "DCSFuzzTabBarController.h"
+#import "DCSFuzzdatastore.h"
 
 #import "DCSFuzzImagesViewController.h"
 #import "DCSFuzzAllDataViewController.h"
@@ -15,6 +16,9 @@
 
 
 @interface DCSFuzzTabBarController ()
+
+@property (nonatomic, strong) DCSFuzzDatastore *datastore;
+
 
 @end
 
@@ -27,7 +31,32 @@
     DCSFuzzTextViewController *textTVC = [self makeTextVC];
     DCSFuzzImagesViewController *imagesTVC = [self makeImagesVC];
     
+    self.datastore = [DCSFuzzDatastore sharedDataStore];
+    
     self.viewControllers = @[allDataTVC, textTVC, imagesTVC];
+    
+    
+    [self.datastore populateDatastoreWithCompletionBlock:^(BOOL success, NSError *error){
+        
+        if (success) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+            
+            [self.datastore downloadImagesWithCompletionBlock:^(DCSFuzzData *fuzzData) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheCell" object:fuzzData];
+                
+            }];
+        } else {
+            
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentError" object:error];
+            
+        }
+        
+    }];
+    
+    
 }
 
 

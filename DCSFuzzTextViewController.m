@@ -25,11 +25,14 @@
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.textArray = [[NSMutableArray alloc]init];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concrete_seamless"]];
     
     [self setupTableView];
 
     [self prepareTableViewForResizingCells];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentError:) name:@"presentError" object:nil];
     
     for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
         if ([eachData.type isEqualToString:@"text"]) {
@@ -44,6 +47,9 @@
     
     self.myTableView.delegate = self;
     self.myTableView.dataSource=self;
+    self.myTableView.backgroundColor = [UIColor clearColor];
+    
+    self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     [self.view addSubview:self.myTableView];
     
@@ -94,7 +100,39 @@
     cell.dateLabel.text=((DCSFuzzData *)self.textArray[indexPath.row]).date;
     cell.delegate = self;
     
+
     return cell;
+}
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat cornerRadius = 8.f;
+    
+    CAShapeLayer *layer = [[CAShapeLayer alloc] init];
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    CGRect bounds = (CGRectInset(cell.bounds, 10, 3));
+    
+    layer.fillColor = [UIColor clearColor].CGColor;
+    layer.strokeColor = [UIColor blackColor].CGColor;
+    
+    
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));  //topcenter
+    CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds), CGRectGetMidY(bounds), cornerRadius);
+    
+    
+    CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMidY(bounds), CGRectGetMinX(bounds), CGRectGetMaxY(bounds), cornerRadius);
+    CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), CGRectGetMaxY(bounds), cornerRadius);
+    
+    CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+    CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+    
+    layer.path = pathRef;
+    CFRelease(pathRef);
+    
+    UIView *testView = [[UIView alloc] initWithFrame:bounds];
+    [testView.layer insertSublayer:layer atIndex:0];
+    testView.backgroundColor = UIColor.clearColor;
+    cell.backgroundView = testView;
 }
 
 
@@ -127,5 +165,40 @@
     return idAlert;
 }
 
+- (void)reloadTable:(NSNotification *)notification {
+    
+    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
+        if ([eachData.type isEqualToString:@"text"]) {
+            [self.textArray addObject:eachData];
+        }
+    }
+    
+    [self.myTableView reloadData];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)presentError:(NSNotification *) notification {
+    
+    UIAlertController *errorAlert = [self makeErrorAlertWithError:notification.object];
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    
+}
+
+-(UIAlertController *) makeErrorAlertWithError: (NSError *) error {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"No Connection"
+                                                                        message:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler: ^(UIAlertAction *action) {
+                                                              
+                                                          }];
+    [errorAlert addAction:defaultAction];
+    
+    return errorAlert;
+}
 
 @end

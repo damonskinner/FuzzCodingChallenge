@@ -25,7 +25,7 @@
     self.datastore = [DCSFuzzDatastore sharedDataStore];
     self.imageArray = [[NSMutableArray alloc]init];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concrete_seamless"]];
     
     [self setupTableView];
 
@@ -38,8 +38,10 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCell:) name:@"reloadTheCell" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentError:) name:@"presentError" object:nil];
     
-    [self.myTableView reloadData];
+
 }
 
 -(void) setupTableView {
@@ -52,6 +54,7 @@
     
     self.myTableView.delegate = self;
     self.myTableView.dataSource=self;
+    self.myTableView.backgroundColor = [UIColor clearColor];
     
     NSDictionary *views = @{@"view":self.view,@"tableView":self.myTableView};
     
@@ -145,5 +148,36 @@
     [idAlert addAction:defaultAction];
     return idAlert;
 }
+
+-(UIAlertController *) makeErrorAlertWithError: (NSError *) error {
+    UIAlertController *errorAlert = [UIAlertController alertControllerWithTitle:@"No Connection"
+                                                                        message:[NSString stringWithFormat:@"%@",error.localizedDescription]
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler: ^(UIAlertAction *action) {
+                                                              
+                                                          }];
+    [errorAlert addAction:defaultAction];
+    
+    return errorAlert;
+}
+
+-(void)presentError:(NSNotification *) notification {
+    
+    UIAlertController *errorAlert = [self makeErrorAlertWithError:notification.object];
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    
+}
+
+-(void)reloadCell:(NSNotification *) notification {
+    for (NSInteger i=0; i<[self.imageArray count]; i++) {
+        if ([notification.object isEqual:self.imageArray[i]]){
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
 
 @end

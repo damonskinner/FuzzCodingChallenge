@@ -8,7 +8,6 @@
 
 #import "DCSFuzzDatastore.h"
 #import "DCSFuzzAPI.h"
-#import "DCSFuzzData.h"
 #import <AFNetworking.h>
 
 @implementation DCSFuzzDatastore
@@ -50,7 +49,7 @@
 }
 
 
--(void) downloadImagesWithCompletionBlock:(void (^)(NSInteger j))completionBlock {
+-(void) downloadImagesWithCompletionBlock:(void (^)(DCSFuzzData *fuzzData))completionBlock {
     for (NSInteger i=0;i<[self.fuzzDataArray count];i++) {
         if ([((DCSFuzzData *)self.fuzzDataArray[i]).type isEqualToString:@"image"]) {
             NSOperationQueue *myQueue = [[NSOperationQueue alloc] init];
@@ -66,9 +65,7 @@
                 
                 ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=responseObject;
                 
-                completionBlock(i);
-                
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+                completionBlock(((DCSFuzzData *)self.fuzzDataArray[i]));
                 
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

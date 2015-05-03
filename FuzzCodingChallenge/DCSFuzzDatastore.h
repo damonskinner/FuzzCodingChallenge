@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DCSFuzzData.h"
 
 @interface DCSFuzzDatastore : NSObject
 
@@ -16,6 +17,6 @@
 + (instancetype)sharedDataStore;
 
 -(void) populateDatastoreWithCompletionBlock:(void (^)(BOOL, NSError *))completionBlock;
--(void) downloadImagesWithCompletionBlock:(void (^)(NSInteger j))completionBlock;
+-(void) downloadImagesWithCompletionBlock:(void (^)(DCSFuzzData *fuzzData))completionBlock;
 
 @end

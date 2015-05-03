@@ -25,28 +25,15 @@
     [super viewDidLoad];
     
     self.datastore = [DCSFuzzDatastore sharedDataStore];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"concrete_seamless"]];
     [self setupTableView];
     
     [self prepareTableViewForResizingCells];
     
-   
-    [self.datastore populateDatastoreWithCompletionBlock:^(BOOL success, NSError *error){
-        
-        if (success) {
-            [self.myTableView reloadData];
-            
-            [self.datastore downloadImagesWithCompletionBlock:^(NSInteger j) {
-                NSIndexPath *ip = [NSIndexPath indexPathForRow:j inSection:0];
-                [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
-            }];
-        } else {
-            UIAlertController *errorAlert = [self makeErrorAlertWithError:error];
-            
-            [self presentViewController:errorAlert animated:YES completion:nil];
-        }
-        
-    }];
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTable:) name:@"reloadTheTable" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCell:) name:@"reloadTheCell" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentError:) name:@"presentError" object:nil];
+    
     
 }
 
@@ -56,6 +43,7 @@
     
     self.myTableView.delegate = self;
     self.myTableView.dataSource=self;
+    self.myTableView.backgroundColor = [UIColor clearColor];
     
     [self.view removeConstraints:self.view.constraints];
     [self.myTableView removeConstraints:self.myTableView.constraints];
@@ -177,5 +165,33 @@
     
     return errorAlert;
 }
+
+- (void)reloadTable:(NSNotification *)notification {
+    
+    [self.myTableView reloadData];
+}
+
+-(void)reloadCell:(NSNotification *) notification {
+    for (NSInteger i=0; i<[self.datastore.fuzzDataArray count]; i++) {
+        if ([notification.object isEqual:self.datastore.fuzzDataArray[i]]){
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
+}
+
+-(void)presentError:(NSNotification *) notification {
+    
+    UIAlertController *errorAlert = [self makeErrorAlertWithError:notification.object];
+    
+    [self presentViewController:errorAlert animated:YES completion:nil];
+    
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

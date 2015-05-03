@@ -13,6 +13,9 @@
 - (void)awakeFromNib {
     // Initialization code
     self.dateLabel.font = [UIFont fontWithName:@"Copperplate-Light" size:16];
+    self.backgroundColor = [UIColor clearColor];
+    
+    
 
 }
 
