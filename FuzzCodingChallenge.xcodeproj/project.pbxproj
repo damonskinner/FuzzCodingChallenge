@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36547B0B1AF9459C007C176B /* UIColor+SampleColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 36547B0A1AF9459C007C176B /* UIColor+SampleColors.m */; };
 		36594F981AF1C68A0010E3D1 /* DCSFuzzTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */; };
 		36594F9A1AF1D49A0010E3D1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 36594F991AF1D49A0010E3D1 /* placeholder.png */; };
 		36594F9E1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36594F9C1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		36547B091AF9459C007C176B /* UIColor+SampleColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SampleColors.h"; sourceTree = "<group>"; };
+		36547B0A1AF9459C007C176B /* UIColor+SampleColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SampleColors.m"; sourceTree = "<group>"; };
 		36594F971AF1C68A0010E3D1 /* DCSFuzzTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzTextCell.xib; sourceTree = "<group>"; };
 		36594F991AF1D49A0010E3D1 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		36594F9B1AF1D9BA0010E3D1 /* DCSFuzzPopupImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzPopupImageViewController.h; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 				36F403AD1AF6E812001C84D1 /* concrete_seamless.png */,
 				36ED69091AF1976C008EA7D3 /* DCSConstants.h */,
 				36ED690A1AF1976C008EA7D3 /* DCSConstants.m */,
+				36547B091AF9459C007C176B /* UIColor+SampleColors.h */,
+				36547B0A1AF9459C007C176B /* UIColor+SampleColors.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				368126921AF17E9000101034 /* main.m in Sources */,
 				36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m in Sources */,
 				36ED69081AF19741008EA7D3 /* DCSFuzzAPI.m in Sources */,
+				36547B0B1AF9459C007C176B /* UIColor+SampleColors.m in Sources */,
 				36ED69171AF19C6B008EA7D3 /* DCSFuzzImagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

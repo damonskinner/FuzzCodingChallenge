@@ -10,6 +10,7 @@
 #import "DCSFuzzImageTableViewCell.h"
 #import "DCSFuzzData.h"
 #import "DCSFuzzPopupImageViewController.h"
+#import "UIColor+SampleColors.h"
 
 @interface DCSFuzzImagesViewController ()
 
@@ -177,6 +178,83 @@
             [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
         }
     }
+}
+
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat cornerRadius = 22.f;
+    CAShapeLayer *cornerEdges = [[CAShapeLayer alloc] init];
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    CGRect bounds = (CGRectInset(cell.bounds, 10, 5));
+    
+    cornerEdges.fillColor = [UIColor clearColor].CGColor;
+    cornerEdges.strokeColor = [UIColor greenColor].CGColor;
+    
+    //top left
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
+    
+    //bottom left
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
+    
+    //top right
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
+    
+    //bottom right
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
+    
+    
+    cornerEdges.path = pathRef;
+    
+    CFRelease(pathRef);
+    
+    CGMutablePathRef pathRef2 = CGPathCreateMutable();
+    
+    CAShapeLayer *cornerFill = [[CAShapeLayer alloc]init];
+    cornerFill.fillColor = [UIColor SampleGrayLight].CGColor;
+    cornerEdges.strokeColor = [UIColor SampleGray].CGColor;
+    
+    //top left
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds), cornerRadius);
+    
+    //bottom left
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds), cornerRadius);
+    
+    //top right
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds), cornerRadius);
+    
+    //bottom right
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds), cornerRadius);
+    
+    
+    cornerFill.path=pathRef2;
+    
+    CFRelease(pathRef2);
+    
+    
+    UIView *testView = [[UIView alloc] initWithFrame:bounds];
+    [testView.layer insertSublayer:cornerEdges atIndex:1];
+    [testView.layer insertSublayer:cornerFill atIndex:0];
+    testView.backgroundColor = UIColor.clearColor;
+    cell.backgroundView = testView;
 }
 
 
