@@ -15,8 +15,16 @@
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UIView *topBarView;
 
+- (void)viewDidLoad;
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (void)webViewDidStartLoad:(UIWebView *)webView;
+- (void)webViewDidFinishLoad:(UIWebView *)webView;
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error;
 
 - (IBAction)returnButton:(id)sender;
+
+- (void)didReceiveMemoryWarning;
 
 @end
 
@@ -32,11 +40,6 @@
     NSMutableURLRequest * request =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.webViewURLString]];
     [self.fuzzWebView loadRequest:request];
     // Do any additional setup after loading the view from its nib.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -65,10 +68,20 @@
     
 }
 
+
+
+#pragma mark - Navigation
+
 - (IBAction)returnButton:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - Misc
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 @end

@@ -16,7 +16,29 @@
 @property (nonatomic, strong) NSMutableArray *textArray;
 @property (nonatomic, strong) UITableView *myTableView;
 
+- (void)viewDidLoad;
+
+- (void)setupTableView;
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadTable:(NSNotification *)notification;
+
+- (void)prepareTableViewForResizingCells;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)presentError:(NSNotification *) notification;
+- (UIAlertController *) makeErrorAlertWithError: (NSError *) error;
+- (void)idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath;
+- (UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath;
+
+- (void)didReceiveMemoryWarning;
+- (void)dealloc;
+
 @end
+
 
 @implementation DCSFuzzTextViewController
 
@@ -42,6 +64,8 @@
     [self.myTableView reloadData];
 }
 
+#pragma mark - SetupTableview
+
 -(void) setupTableView {
     self.myTableView = [[UITableView alloc]init];
     
@@ -65,43 +89,31 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[tableView]-50-|" options:0 metrics:nil views:views]];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//originally used didSelectRowAtIndexPath
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
+    DCSFuzzWebViewController *webViewVC = [[DCSFuzzWebViewController alloc]init];
+    webViewVC.webViewURLString = @"https://fuzzproductions.com/";
+    [self presentViewController:webViewVC animated:YES completion:nil];
+    
+    return NO;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    // Return the number of sections.
-    return 1;
+- (void)reloadTable:(NSNotification *)notification {
+    
+    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
+        if ([eachData.type isEqualToString:@"text"]) {
+            [self.textArray addObject:eachData];
+        }
+    }
+    
+    [self.myTableView reloadData];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    // Return the number of rows in the section.
-    return [self.textArray count];
-}
+#pragma mark - Tableview delegate
 
 - (void)prepareTableViewForResizingCells {
     self.myTableView.rowHeight = UITableViewAutomaticDimension;
     self.myTableView.estimatedRowHeight = 50.0;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
-    
-    cell.fuzzText.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
-
-    cell.fuzzText.numberOfLines=0;
-    cell.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
-    cell.dateLabel.text=((DCSFuzzData *)self.textArray[indexPath.row]).date;
-    cell.delegate = self;
-    
-
-    return cell;
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -135,52 +147,30 @@
     cell.backgroundView = testView;
 }
 
+#pragma mark - Tableview data source
 
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
 
-
-#pragma mark - Navigation
-//originally used didSelectRowAtIndexPath
- - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
-     DCSFuzzWebViewController *webViewVC = [[DCSFuzzWebViewController alloc]init];
-     webViewVC.webViewURLString = @"https://fuzzproductions.com/";
-     [self presentViewController:webViewVC animated:YES completion:nil];
- 
-     return NO;
- }
-
--(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
-    
-    UIAlertController *idAlert = [self makeIDAlertControllerWithIndexPath:indexPath];
-    [self presentViewController:idAlert animated:YES completion:nil];
-    
+    return 1;
 }
 
--(UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath {
-    UIAlertController *idAlert = [UIAlertController alertControllerWithTitle:@"Data ID:"
-                                                                     message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.textArray[indexPath.row]).dataId]
-                                                              preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                          handler: ^(UIAlertAction *action) {
-                                                              
-                                                          }];
-    [idAlert addAction:defaultAction];
-    return idAlert;
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return [self.textArray count];
 }
 
-- (void)reloadTable:(NSNotification *)notification {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
     
-    for (DCSFuzzData *eachData in self.datastore.fuzzDataArray) {
-        if ([eachData.type isEqualToString:@"text"]) {
-            [self.textArray addObject:eachData];
-        }
-    }
+    cell.fuzzText.text = ((DCSFuzzData *)self.textArray[indexPath.row]).data;
+
+    cell.dateLabel.text=((DCSFuzzData *)self.textArray[indexPath.row]).date;
+    cell.delegate = self;
     
-    [self.myTableView reloadData];
+    return cell;
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+#pragma mark - Alerts
 
 -(void)presentError:(NSNotification *) notification {
     
@@ -201,6 +191,37 @@
     [errorAlert addAction:defaultAction];
     
     return errorAlert;
+}
+
+-(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
+    
+    UIAlertController *idAlert = [self makeIDAlertControllerWithIndexPath:indexPath];
+    [self presentViewController:idAlert animated:YES completion:nil];
+    
+}
+
+-(UIAlertController *) makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath {
+    UIAlertController *idAlert = [UIAlertController alertControllerWithTitle:@"Data ID:"
+                                                                     message:[NSString stringWithFormat:@"The ID of this data entry is: %@",((DCSFuzzData *)self.textArray[indexPath.row]).dataId]
+                                                              preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                          handler: ^(UIAlertAction *action) {
+                                                              
+                                                          }];
+    [idAlert addAction:defaultAction];
+    return idAlert;
+}
+
+
+#pragma mark - Misc
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

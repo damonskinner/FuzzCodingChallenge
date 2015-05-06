@@ -19,8 +19,16 @@
 
 @property (nonatomic, strong) DCSFuzzDatastore *datastore;
 
+-(void)viewDidLoad;
+
+- (DCSFuzzAllDataViewController *)makeAllDataVC;
+- (DCSFuzzTextViewController *)makeTextVC;
+- (DCSFuzzImagesViewController *)makeImagesVC;
+
+- (void)didReceiveMemoryWarning;
 
 @end
+
 
 @implementation DCSFuzzTabBarController
 
@@ -59,6 +67,7 @@
     
 }
 
+#pragma mark - MakeChildVCs
 
 -(DCSFuzzAllDataViewController *) makeAllDataVC {
     DCSFuzzAllDataViewController *dataVC = [[DCSFuzzAllDataViewController alloc]init];
@@ -85,6 +94,9 @@
     
     return imagesVC;
 }
+
+
+#pragma mark - Misc
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

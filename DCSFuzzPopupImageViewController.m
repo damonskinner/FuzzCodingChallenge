@@ -11,6 +11,12 @@
 @interface DCSFuzzPopupImageViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *popUpImage;
 
+- (void)viewDidLoad;
+
+-(void) viewTapped: (UIGestureRecognizer *)gesture;
+
+- (void)didReceiveMemoryWarning;
+
 @end
 
 @implementation DCSFuzzPopupImageViewController
@@ -26,9 +32,13 @@
     [self.view addGestureRecognizer:tapGesture];
 }
 
+#pragma mark - Navigation
+
 -(void) viewTapped: (UIGestureRecognizer *)gesture {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Misc
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

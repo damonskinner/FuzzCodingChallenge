@@ -18,7 +18,8 @@
     self.backgroundColor = [UIColor clearColor];
     
     
-    
+    self.fuzzText.numberOfLines=0;
+    self.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

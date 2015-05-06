@@ -14,6 +14,6 @@
 @interface DCSFuzzAllDataViewController : UIViewController <DCSFuzzTextCellDelegate, DCSFuzzImageCellDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) DCSFuzzDatastore *datastore;
-@property (nonatomic, strong) NSString *test;
+
 
 @end

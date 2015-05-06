@@ -17,7 +17,30 @@
 @property (nonatomic, strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) UITableView *myTableView;
 
+-(void)viewDidLoad;
+
+- (void)setupTableView;
+- (void)reloadTable:(NSNotification *)notification;
+- (void)reloadCell:(NSNotification *) notification;
+
+- (void)prepareTableViewForResizingCells;
+- (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath;
+- (UIAlertController *)makeIDAlertControllerWithIndexPath:(NSIndexPath *) indexPath;
+- (UIAlertController *)makeErrorAlertWithError: (NSError *) error;
+- (void)presentError:(NSNotification *) notification;
+
+- (void)dealloc;
+- (void)didReceiveMemoryWarning;
+
 @end
+
 
 @implementation DCSFuzzImagesViewController
 
@@ -45,6 +68,8 @@
 
 }
 
+#pragma mark - SetupTableview
+
 -(void) setupTableView {
     self.myTableView = [[UITableView alloc]init];
     [self.view addSubview:self.myTableView];
@@ -67,61 +92,27 @@
 }
 
 
-- (void)reloadTable:(NSNotification *)notification {
+-(void)reloadTable:(NSNotification *)notification {
     [self.myTableView reloadData];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+-(void)reloadCell:(NSNotification *) notification {
+    for (NSInteger i=0; i<[self.imageArray count]; i++) {
+        if ([notification.object isEqual:self.imageArray[i]]){
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Tableview delegate
 
 - (void)prepareTableViewForResizingCells {
     self.myTableView.rowHeight = UITableViewAutomaticDimension;
     self.myTableView.estimatedRowHeight = 50.0;
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    // Return the number of sections.
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    // Return the number of rows in the section.
-    return [self.imageArray count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DCSFuzzImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    
-    if(cell==nil) {
-        [tableView registerNib:[UINib nibWithNibName:@"DCSFuzzImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"imageCell"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-    }
-    
-    cell.fuzzImage.image = ((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
-    cell.fuzzImage.contentMode = UIViewContentModeScaleAspectFit;
-    cell.dateLabel.text = ((DCSFuzzData *)self.imageArray[indexPath.row]).date;
-    
-    cell.delegate = self;
-    
-    
-    return cell;
-}
-
-
-#pragma mark - Navigation
-
-//originally used didSelectRowAtIndexPath 
+//originally used didSelectRowAtIndexPath
 - (BOOL)tableView:(UITableView *)tableView shouldHighlightRowAtIndexPath:(NSIndexPath *)indexPath {
     DCSFuzzPopupImageViewController *popUpImageVC = [[DCSFuzzPopupImageViewController alloc] init];
     popUpImageVC.selectedImage =((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
@@ -130,6 +121,104 @@
     return NO;
 }
 
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat cornerRadius = 22.f;
+    CAShapeLayer *cornerEdges = [[CAShapeLayer alloc] init];
+    CGMutablePathRef pathRef = CGPathCreateMutable();
+    CGRect bounds = (CGRectInset(cell.bounds, 10, 5));
+    
+    cornerEdges.fillColor = [UIColor clearColor].CGColor;
+    cornerEdges.strokeColor = [UIColor greenColor].CGColor;
+    
+    //top left
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
+    
+    //bottom left
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
+    
+    //top right
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
+    
+    //bottom right
+    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
+    
+    cornerEdges.path = pathRef;
+    CFRelease(pathRef);
+    
+    
+    CGMutablePathRef pathRef2 = CGPathCreateMutable();
+    CAShapeLayer *cornerFill = [[CAShapeLayer alloc]init];
+    cornerFill.fillColor = [UIColor SampleGrayLight].CGColor;
+    cornerEdges.strokeColor = [UIColor SampleGray].CGColor;
+    
+    //top left
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds), cornerRadius);
+    
+    //bottom left
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds), cornerRadius);
+    
+    //top right
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds), cornerRadius);
+    
+    //bottom right
+    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
+    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
+    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds), cornerRadius);
+
+    cornerFill.path=pathRef2;
+    CFRelease(pathRef2);
+    
+    UIView *testView = [[UIView alloc] initWithFrame:bounds];
+    [testView.layer insertSublayer:cornerEdges atIndex:1];
+    [testView.layer insertSublayer:cornerFill atIndex:0];
+    testView.backgroundColor = UIColor.clearColor;
+    cell.backgroundView = testView;
+}
+
+
+#pragma mark - Tableview data source
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return [self.imageArray count];
+}
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DCSFuzzImageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
+    
+    cell.fuzzImage.image = ((DCSFuzzData *)self.imageArray[indexPath.row]).fuzzImage;
+    cell.dateLabel.text = ((DCSFuzzData *)self.imageArray[indexPath.row]).date;
+    cell.delegate = self;
+    
+    return cell;
+}
+
+
+#pragma mark - Alerts
 
 -(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
     
@@ -171,91 +260,18 @@
     
 }
 
--(void)reloadCell:(NSNotification *) notification {
-    for (NSInteger i=0; i<[self.imageArray count]; i++) {
-        if ([notification.object isEqual:self.imageArray[i]]){
-            NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
-            [self.myTableView reloadRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationFade];
-        }
-    }
+
+
+
+#pragma mark - Misc
+
+-(void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat cornerRadius = 22.f;
-    CAShapeLayer *cornerEdges = [[CAShapeLayer alloc] init];
-    CGMutablePathRef pathRef = CGPathCreateMutable();
-    CGRect bounds = (CGRectInset(cell.bounds, 10, 5));
-    
-    cornerEdges.fillColor = [UIColor clearColor].CGColor;
-    cornerEdges.strokeColor = [UIColor greenColor].CGColor;
-    
-    //top left
-    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
-    
-    //bottom left
-    CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
-    
-    //top right
-    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
-    
-    //bottom right
-    CGPathMoveToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
-    
-    
-    cornerEdges.path = pathRef;
-    
-    CFRelease(pathRef);
-    
-    CGMutablePathRef pathRef2 = CGPathCreateMutable();
-    
-    CAShapeLayer *cornerFill = [[CAShapeLayer alloc]init];
-    cornerFill.fillColor = [UIColor SampleGrayLight].CGColor;
-    cornerEdges.strokeColor = [UIColor SampleGray].CGColor;
-    
-    //top left
-    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds)+20);
-    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMinY(bounds), cornerRadius);
-    
-    //bottom left
-    CGPathMoveToPoint(pathRef2, nil, CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds)-20);
-    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMinX(bounds)+40, CGRectGetMaxY(bounds), cornerRadius);
-    
-    //top right
-    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds)+20);
-    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMinY(bounds), cornerRadius);
-    
-    //bottom right
-    CGPathMoveToPoint(pathRef2, nil, CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
-    CGPathAddLineToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds)-20);
-    CGPathAddArcToPoint(pathRef2, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds)-40, CGRectGetMaxY(bounds), cornerRadius);
-    
-    
-    cornerFill.path=pathRef2;
-    
-    CFRelease(pathRef2);
-    
-    
-    UIView *testView = [[UIView alloc] initWithFrame:bounds];
-    [testView.layer insertSublayer:cornerEdges atIndex:1];
-    [testView.layer insertSublayer:cornerFill atIndex:0];
-    testView.backgroundColor = UIColor.clearColor;
-    cell.backgroundView = testView;
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
-
 
 @end
