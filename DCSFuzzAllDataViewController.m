@@ -35,7 +35,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCell:) name:@"reloadTheCell" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentError:) name:@"presentError" object:nil];
     
-    
 }
 
 -(void) setupTableView {
@@ -130,11 +129,12 @@
         DCSFuzzWebViewController *webViewVC = [[DCSFuzzWebViewController alloc]init];
         webViewVC.webViewURLString = @"https://fuzzproductions.com/";
         [self presentViewController:webViewVC animated:YES completion:nil];
-        return YES;
+        return NO;
     }
     
     return NO;
 }
+
 
 -(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
     

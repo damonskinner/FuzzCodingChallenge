@@ -145,7 +145,7 @@
      webViewVC.webViewURLString = @"https://fuzzproductions.com/";
      [self presentViewController:webViewVC animated:YES completion:nil];
  
-     return YES;
+     return NO;
  }
 
 -(void) idButtonWasTappedForIndexPath:(NSIndexPath *)indexPath {
