@@ -62,8 +62,17 @@
             imageDownload.responseSerializer = [[AFImageResponseSerializer alloc] init];
             
             [imageDownload setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                
-                ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=responseObject;
+                if (((UIImage *)responseObject).size.width>=1000 && ((UIImage *)responseObject).size.height>=1000) {
+                    CGSize newSize=CGSizeMake(500,500);
+                    UIGraphicsBeginImageContext(newSize);
+                    [((UIImage *)responseObject) drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+                    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+                    UIGraphicsEndImageContext();
+                    ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=newImage;
+                } else {
+                    ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=responseObject;
+                }
+        
                 
                 completionBlock(((DCSFuzzData *)self.fuzzDataArray[i]));
                 

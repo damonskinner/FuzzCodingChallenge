@@ -8,11 +8,12 @@
 
 #import "AppDelegate.h"
 
-
-#import "DCSFuzzAPI.h"
 #import "DCSFuzzData.h"
+#import "DCSFuzzDatastore.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) DCSFuzzDatastore *datastore;
 
 @end
 
@@ -21,6 +22,24 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.datastore = [DCSFuzzDatastore sharedDataStore];
+    [self.datastore populateDatastoreWithCompletionBlock:^(BOOL success, NSError *error){
+        
+        if (success) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheTable" object:nil];
+            
+            [self.datastore downloadImagesWithCompletionBlock:^(DCSFuzzData *fuzzData) {
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadTheCell" object:fuzzData];
+                
+            }];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"presentError" object:error];
+            
+        }
+    }];
+    
     
     return YES;
 }
