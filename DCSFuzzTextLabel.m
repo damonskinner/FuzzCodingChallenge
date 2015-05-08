@@ -8,6 +8,7 @@
 
 #import "DCSFuzzTextLabel.h"
 
+
 @implementation DCSFuzzTextLabel
 
 /*
@@ -22,10 +23,25 @@
 {
     [super layoutSubviews];
     
-    self.preferredMaxLayoutWidth = CGRectGetWidth(self.bounds);
+    self.preferredMaxLayoutWidth = CGRectGetWidth(self.parentCell.frame);
     
     [super layoutSubviews];
 }
 
+-(UITableViewCell *)parentCell
+{
+    // get the superview
+    id view = [self superview];
+    
+    // if the superview exists and is NOT a tableview, keep going up
+    while (view && [view isKindOfClass:[UITableViewCell class]] == NO) {
+        view = [view superview];
+    }
+    
+    // cast it
+    UITableViewCell *tableViewCell = (UITableViewCell *)view;
+    
+    return tableViewCell;
+}
 
 @end

@@ -10,4 +10,6 @@
 
 @interface DCSFuzzTextLabel : UILabel
 
+@property (nonatomic, strong) UITableViewCell *parentCell;
+
 @end
