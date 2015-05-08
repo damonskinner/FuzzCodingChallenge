@@ -20,6 +20,7 @@
 //    self.fuzzText.preferredMaxLayoutWidth = 300;
     self.fuzzText.numberOfLines=0;
     self.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
+    [self.fuzzText layoutSubviews];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

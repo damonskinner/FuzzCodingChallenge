@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DCSFuzzTextLabel.h"
 
 @protocol DCSFuzzTextCellDelegate <NSObject>
 
@@ -19,7 +20,7 @@
 
 @property (nonatomic, strong) UITableView *parentTableView;
 
-@property (weak, nonatomic) IBOutlet UILabel *fuzzText;
+@property (weak, nonatomic) IBOutlet DCSFuzzTextLabel *fuzzText;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *idButtonLabel;
 

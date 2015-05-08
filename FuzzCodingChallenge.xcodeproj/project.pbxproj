@@ -21,6 +21,7 @@
 		3681269D1AF17E9000101034 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3681269C1AF17E9000101034 /* Images.xcassets */; };
 		368126A01AF17E9000101034 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3681269E1AF17E9000101034 /* LaunchScreen.xib */; };
 		368126AC1AF17E9000101034 /* FuzzCodingChallengeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 368126AB1AF17E9000101034 /* FuzzCodingChallengeTests.m */; };
+		369440221AFD1FAF00532DA2 /* DCSFuzzTextLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 369440211AFD1FAF00532DA2 /* DCSFuzzTextLabel.m */; };
 		369FD35D1AF1A793009FB9A7 /* DCSFuzzTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */; };
 		369FD3671AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */; };
 		369FD36A1AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 369FD3691AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m */; };
@@ -70,6 +71,8 @@
 		368126A51AF17E9000101034 /* FuzzCodingChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FuzzCodingChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		368126AA1AF17E9000101034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368126AB1AF17E9000101034 /* FuzzCodingChallengeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuzzCodingChallengeTests.m; sourceTree = "<group>"; };
+		369440201AFD1FAF00532DA2 /* DCSFuzzTextLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextLabel.h; sourceTree = "<group>"; };
+		369440211AFD1FAF00532DA2 /* DCSFuzzTextLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextLabel.m; sourceTree = "<group>"; };
 		369FD35A1AF1A793009FB9A7 /* DCSFuzzTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSFuzzTextCell.h; sourceTree = "<group>"; };
 		369FD35B1AF1A793009FB9A7 /* DCSFuzzTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSFuzzTextCell.m; sourceTree = "<group>"; };
 		369FD3661AF1C3AD009FB9A7 /* DCSFuzzImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCSFuzzImageTableViewCell.xib; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 		368126831AF17E9000101034 = {
 			isa = PBXGroup;
 			children = (
+				369440201AFD1FAF00532DA2 /* DCSFuzzTextLabel.h */,
+				369440211AFD1FAF00532DA2 /* DCSFuzzTextLabel.m */,
 				36594FA81AF1E6B90010E3D1 /* APIs */,
 				36594FA71AF1E6910010E3D1 /* Data */,
 				36594FA61AF1E6790010E3D1 /* Supporting Files */,
@@ -421,6 +426,7 @@
 				36594FA31AF1DDE10010E3D1 /* DCSFuzzWebViewController.m in Sources */,
 				36ED69111AF19BD5008EA7D3 /* DCSFuzzTabBarController.m in Sources */,
 				369FD36A1AF1C3F8009FB9A7 /* DCSFuzzImageTableViewCell.m in Sources */,
+				369440221AFD1FAF00532DA2 /* DCSFuzzTextLabel.m in Sources */,
 				36ED691A1AF19C78008EA7D3 /* DCSFuzzTextViewController.m in Sources */,
 				368126921AF17E9000101034 /* main.m in Sources */,
 				36ED69141AF19C24008EA7D3 /* DCSFuzzAllDataViewController.m in Sources */,
