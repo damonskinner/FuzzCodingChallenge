@@ -9,6 +9,7 @@
 #import "DCSFuzzDatastore.h"
 #import "DCSFuzzAPI.h"
 #import <AFNetworking.h>
+#import "UIImage+HelperMethods.h"
 
 @implementation DCSFuzzDatastore
 
@@ -62,15 +63,15 @@
             imageDownload.responseSerializer = [[AFImageResponseSerializer alloc] init];
             
             [imageDownload setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-                if (((UIImage *)responseObject).size.width>=1000 && ((UIImage *)responseObject).size.height>=1000) {
-                    CGSize newSize=CGSizeMake(500,500);
-                    UIGraphicsBeginImageContext(newSize);
-                    [((UIImage *)responseObject) drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-                    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-                    UIGraphicsEndImageContext();
+                
+                UIImage *newImage = responseObject;
+                if (newImage.size.width>=1000 && newImage.size.height>=1000) {
+                    
+                    newImage = [newImage reduceImageSize];
+                    
                     ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=newImage;
                 } else {
-                    ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=responseObject;
+                    ((DCSFuzzData *)self.fuzzDataArray[i]).fuzzImage=newImage;
                 }
         
                 

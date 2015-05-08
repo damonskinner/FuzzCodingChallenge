@@ -86,6 +86,7 @@
 }
 
 - (void)reloadCell:(NSNotification *) notification {
+    
     for (NSInteger i=0; i<[self.datastore.fuzzDataArray count]; i++) {
         if ([notification.object isEqual:self.datastore.fuzzDataArray[i]]){
             NSIndexPath *ip = [NSIndexPath indexPathForRow:i inSection:0];
@@ -95,7 +96,7 @@
 }
 
 - (void)reloadTable:(NSNotification *)notification {
-    
+
     [self.myTableView reloadData];
     
 }
@@ -260,7 +261,7 @@
         cell.fuzzText.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
         cell.dateLabel.text = ((DCSFuzzData *) self.datastore.fuzzDataArray[indexPath.row]).date;
         cell.delegate = self;
-        
+
         return cell;
     } else {
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
