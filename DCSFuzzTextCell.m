@@ -17,7 +17,7 @@
     self.dateLabel.font= [UIFont fontWithName:@"Copperplate-Light" size:16];
     self.backgroundColor = [UIColor clearColor];
     
-    
+//    self.fuzzText.preferredMaxLayoutWidth = 300;
     self.fuzzText.numberOfLines=0;
     self.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
 }
@@ -43,6 +43,7 @@
     
     return tableView;
 }
+
 
 - (IBAction)idButton:(id)sender {
     [self.delegate idButtonWasTappedForIndexPath:[self.parentTableView indexPathForCell:self]];

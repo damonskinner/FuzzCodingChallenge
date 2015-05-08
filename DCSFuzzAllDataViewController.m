@@ -207,7 +207,7 @@
         
         CAShapeLayer *layer = [[CAShapeLayer alloc] init];
         CGMutablePathRef pathRef = CGPathCreateMutable();
-        CGRect bounds = (CGRectInset(cell.bounds, 10, 3));
+        CGRect bounds = (CGRectInset(cell.bounds, 5, 5));
         
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.strokeColor = [UIColor blackColor].CGColor;
@@ -259,9 +259,11 @@
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];
         
         cell.fuzzText.text = ((DCSFuzzData *)self.datastore.fuzzDataArray[indexPath.row]).data;
+        [cell.fuzzText sizeToFit];
         cell.dateLabel.text = ((DCSFuzzData *) self.datastore.fuzzDataArray[indexPath.row]).date;
         cell.delegate = self;
 
+        
         return cell;
     } else {
         DCSFuzzTextCell *cell = [tableView dequeueReusableCellWithIdentifier:@"textCell" forIndexPath:indexPath];

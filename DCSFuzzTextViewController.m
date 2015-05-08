@@ -166,7 +166,7 @@
 
     cell.dateLabel.text=((DCSFuzzData *)self.textArray[indexPath.row]).date;
     cell.delegate = self;
-    
+
     return cell;
 }
 
