@@ -207,7 +207,7 @@
         
         CAShapeLayer *layer = [[CAShapeLayer alloc] init];
         CGMutablePathRef pathRef = CGPathCreateMutable();
-        CGRect bounds = (CGRectInset(cell.bounds, 5, 5));
+        CGRect bounds = (CGRectInset(cell.bounds, 10, 5));
         
         layer.fillColor = [UIColor clearColor].CGColor;
         layer.strokeColor = [UIColor blackColor].CGColor;

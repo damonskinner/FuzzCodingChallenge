@@ -78,6 +78,8 @@
     [self.myTableView removeConstraints:self.myTableView.constraints];
     self.myTableView.translatesAutoresizingMaskIntoConstraints=NO;
     
+    self.myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
     self.myTableView.delegate = self;
     self.myTableView.dataSource=self;
     self.myTableView.backgroundColor = [UIColor clearColor];
