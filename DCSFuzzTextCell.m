@@ -17,6 +17,7 @@
     self.dateLabel.font= [UIFont fontWithName:@"Copperplate-Light" size:16];
     self.backgroundColor = [UIColor clearColor];
     
+//issue with ambiguous layout constraints - this kind of fixed, but changed to using IB
 //    self.fuzzText.preferredMaxLayoutWidth = 300;
     self.fuzzText.numberOfLines=0;
     self.fuzzText.lineBreakMode= NSLineBreakByWordWrapping;
